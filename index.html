@@ -6,7 +6,7 @@
     <title>Rodrigo Vidal — Transformación de Sistemas de Pagos</title>
     <meta name="description" content="Especialista en transformación de sistemas de pagos. Conecto la infraestructura técnica con la ejecución del negocio. +19 años en banca.">
     <meta property="og:title" content="Rodrigo Vidal — Transformación de Sistemas de Pagos">
-    <meta property="og:description" content="Me contratan cuando los sistemas de pagos no escalan, generan fricción o nadie tiene la visión completa.">
+    <meta property="og:description" content="Me contratan cuando hay que construir lo que no existe, ordenar lo que no funciona o transformar lo que se ha quedado atrás.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rozoca.github.io/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1075,17 +1075,7 @@
         });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-
-    // Hide/show nav on scroll
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const nav = document.getElementById('nav');
-        const current = window.scrollY;
-        nav.style.transform = current > lastScroll && current > 100 ? 'translateY(-100%)' : 'translateY(0)';
-        lastScroll = current;
-    });
-
-    // Mobile menu
+      // Mobile menu
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinksList = document.getElementById('nav-links');
 
