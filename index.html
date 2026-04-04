@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rodrigo Vidal — Transformación & Liderazgo</title>
-    <meta name="description" content="Especialista en transformación de procesos y gestión del cambio. Conecto la complejidad técnica con la ejecución del negocio. +19 años en banca y sector financiero.">
+    <meta name="description" content="Especialista en transformación de procesos y gestión del cambio. +19 años en banca y sector financiero.">
     <meta property="og:title" content="Rodrigo Vidal — Transformación & Liderazgo">
-    <meta property="og:description" content="Me contratan cuando hay que construir lo que no existe, ordenar lo que no funciona o transformar lo que se ha quedado atrás.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rozoca.github.io/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,9 +20,16 @@
         nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 2rem}
         .nav-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:58px}
         .nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--ink);text-decoration:none}
+        .nav-right{display:flex;align-items:center;gap:2rem}
         .nav-links{display:flex;gap:2rem;list-style:none}
         .nav-links a{font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);text-decoration:none;transition:color .2s}
         .nav-links a:hover{color:var(--accent)}
+
+        /* Language toggle */
+        .lang-toggle{display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:3px;overflow:hidden;flex-shrink:0}
+        .lang-btn{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .7rem;cursor:pointer;border:none;background:transparent;color:var(--ink-light);transition:background .2s,color .2s;font-family:var(--sans)}
+        .lang-btn.active{background:var(--accent);color:#fff}
+        .lang-btn:not(.active):hover{background:var(--paper-warm);color:var(--ink)}
 
         .hero{padding:7rem 2rem 4.5rem;background:var(--paper);border-bottom:1px solid var(--border)}
         .hero-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;gap:4rem}
@@ -92,17 +98,6 @@
         .education-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.5rem}
         .education-text{font-size:.88rem;color:var(--ink-mid);line-height:1.7;font-weight:300}
 
-        .lab-card{background:#1a1a2e;border:1px solid #1a1a2e;border-radius:4px;padding:2.4rem 2rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:space-between;transition:box-shadow .25s ease,border-color .25s ease;max-width:520px;margin-top:2rem}
-        .lab-card:hover{box-shadow:0 6px 22px rgba(26,26,46,.12);border-color:var(--accent-warm)}
-        .lab-tag{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#e8a87c;display:block;margin-bottom:.7rem}
-        .lab-card-h{font-family:var(--serif);font-size:1.45rem;color:#fff;margin-bottom:.4rem}
-        .lab-card-p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:1rem}
-        .lab-features{list-style:none;margin-bottom:1.5rem}
-        .lab-features li{font-size:.83rem;color:rgba(255,255,255,.75);padding:.2rem 0;display:flex;gap:.5rem}
-        .lab-features li::before{content:'→';color:#e8a87c;flex-shrink:0}
-        .lab-cta{display:inline-flex;align-items:center;gap:.4rem;font-size:.83rem;font-weight:600;color:#e8a87c;text-decoration:none;margin-top:auto;letter-spacing:.03em;transition:gap .2s ease}
-        .lab-cta:hover{gap:.7rem}
-
         .vision-text{margin-top:1.5rem}
         .vision-text p{font-size:1rem;color:var(--ink-mid);line-height:1.8;font-weight:300;margin-bottom:1.2rem}
 
@@ -127,6 +122,10 @@
         .menu-toggle{display:none;flex-direction:column;cursor:pointer;gap:5px;z-index:101}
         .menu-toggle .bar{width:24px;height:2px;background-color:var(--ink);transition:all .3s ease-in-out}
 
+        /* Lang switch transition */
+        .lang-fade{transition:opacity .2s ease}
+        .lang-fade.switching{opacity:0}
+
         @media(max-width:760px){
             .hero-inner{flex-direction:column-reverse;gap:2rem}
             .hero-photo{width:140px}
@@ -138,6 +137,7 @@
             .hero-buttons{flex-direction:column;align-items:flex-start}
             .hero-metrics{gap:.5rem}
             .menu-toggle{display:flex}
+            .nav-right{gap:1rem}
             .nav-links{position:absolute;top:58px;left:0;width:100%;background:rgba(250,250,248,.98);backdrop-filter:blur(10px);flex-direction:column;align-items:center;gap:0;padding:1rem 0;box-shadow:0 4px 15px rgba(0,0,0,.05);clip-path:polygon(0 0,100% 0,100% 0,0 0);transition:clip-path .4s ease-in-out}
             .nav-links.active{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
             .nav-links li{width:100%;text-align:center}
@@ -156,32 +156,38 @@
 <nav id="nav">
     <div class="nav-inner">
         <a href="#" class="nav-name">Rodrigo Vidal</a>
-        <div class="menu-toggle" id="mobile-menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#brecha">El problema</a></li>
-            <li><a href="#casos">Casos</a></li>
-            <li><a href="#metodo">Método</a></li>
-            <li><a href="#trayectoria">Trayectoria</a></li>
-            <li><a href="#laboratorio">Laboratorio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
+        <div class="nav-right">
+            <div class="menu-toggle" id="mobile-menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#brecha" data-i18n="nav.problem">El problema</a></li>
+                <li><a href="#casos" data-i18n="nav.cases">Casos</a></li>
+                <li><a href="#metodo" data-i18n="nav.method">Método</a></li>
+                <li><a href="#trayectoria" data-i18n="nav.trajectory">Trayectoria</a></li>
+                <li><a href="#laboratorio" data-i18n="nav.lab">Laboratorio</a></li>
+                <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+            </ul>
+            <div class="lang-toggle">
+                <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
     </div>
 </nav>
 
-<header class="hero">
+<header class="hero lang-fade">
     <div class="hero-inner">
         <div class="hero-text">
-            <div class="hero-label">Transformación & Liderazgo</div>
-            <h1 class="hero-title">Me contratan cuando hay que construir lo que no existe, ordenar lo que no funciona o transformar <em>lo que se ha quedado atrás.</em></h1>
-            <p class="hero-sub">+19 años en banca y sector financiero resolviendo problemas complejos que otros no saben diagnosticar. Construyo operaciones desde cero, ejecuto migraciones críticas y dejo equipos funcionando sin depender de mí.</p>
+            <div class="hero-label" data-i18n="hero.label">Transformación & Liderazgo</div>
+            <h1 class="hero-title" data-i18n="hero.title">Me contratan cuando hay que construir lo que no existe, ordenar lo que no funciona o transformar <em>lo que se ha quedado atrás.</em></h1>
+            <p class="hero-sub" data-i18n="hero.sub">+19 años en banca y sector financiero resolviendo problemas complejos que otros no saben diagnosticar. Construyo operaciones desde cero, ejecuto migraciones críticas y dejo equipos funcionando sin depender de mí.</p>
             <div class="hero-metrics">
-                <span class="hero-metric"><strong>0 → 6</strong> equipo creado desde cero</span>
-                <span class="hero-metric"><strong>87</strong> profesionales coordinados</span>
-                <span class="hero-metric"><strong>20%</strong> reducción de ciclo ISO20022</span>
+                <span class="hero-metric"><strong>0 → 6</strong> <span data-i18n="hero.metric1">equipo creado desde cero</span></span>
+                <span class="hero-metric"><strong>87</strong> <span data-i18n="hero.metric2">profesionales coordinados</span></span>
+                <span class="hero-metric"><strong>20%</strong> <span data-i18n="hero.metric3">reducción de ciclo ISO20022</span></span>
             </div>
             <div class="hero-buttons">
-                <a href="#casos" class="btn-primary">Ver cómo lo hago</a>
-                <a href="CV_Transformation_RV.pdf" class="btn-secondary" target="_blank">Descargar CV (PDF)</a>
+                <a href="#casos" class="btn-primary" data-i18n="hero.cta1">Ver cómo lo hago</a>
+                <a href="CV_Transformation_RV.pdf" class="btn-secondary" target="_blank" data-i18n="hero.cta2">Descargar CV (PDF)</a>
             </div>
             <div class="hero-meta">
                 <div class="hero-meta-item">Madrid, España</div>
@@ -203,253 +209,546 @@
         <span class="logo-item">BME Group</span>
         <span class="logo-item">Minsait</span>
         <span class="logo-item">WiZink</span>
-        <span class="logo-item">Armada de Brasil</span>
+        <span class="logo-item" data-i18n="logos.navy">Armada de Brasil</span>
     </div>
 </div>
 
-<section class="section" id="brecha">
+<section class="section lang-fade" id="brecha">
     <div class="container fade-in">
-        <div class="section-label">El problema</div>
-        <h2>La brecha que pocas<br><em>organizaciones resuelven.</em></h2>
+        <div class="section-label" data-i18n="brecha.label">El problema</div>
+        <h2 data-i18n="brecha.h2">La brecha que pocas<br><em>organizaciones resuelven.</em></h2>
         <div class="brecha-cols">
             <div class="brecha-col">
-                <h3>El desajuste</h3>
-                <p>Los equipos que entienden cómo funcionan los sistemas por dentro y los que toman decisiones de negocio trabajan desconectados. Esa desconexión genera ineficiencias, falta de control y decisiones mal informadas.</p>
+                <h3 data-i18n="brecha.col1.h3">El desajuste</h3>
+                <p data-i18n="brecha.col1.p">Los equipos que entienden cómo funcionan los sistemas por dentro y los que toman decisiones de negocio trabajan desconectados. Esa desconexión genera ineficiencias, falta de control y decisiones mal informadas.</p>
             </div>
             <div class="brecha-col">
-                <h3>Lo que hago</h3>
-                <p>Cierro esa brecha: traduzco complejidad técnica y operativa en decisiones que se pueden ejecutar. No diseño soluciones teóricas. Las implemento, construyo los equipos que las sostienen y dejo capacidad instalada.</p>
+                <h3 data-i18n="brecha.col2.h3">Lo que hago</h3>
+                <p data-i18n="brecha.col2.p">Cierro esa brecha: traduzco complejidad técnica y operativa en decisiones que se pueden ejecutar. No diseño soluciones teóricas. Las implemento, construyo los equipos que las sostienen y dejo capacidad instalada.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section section-warm" id="casos">
+<section class="section section-warm lang-fade" id="casos">
     <div class="container fade-in">
-        <div class="section-label">Casos</div>
-        <h2>Cuatro problemas reales.<br><em>Cuatro resultados medibles.</em></h2>
+        <div class="section-label" data-i18n="casos.label">Casos</div>
+        <h2 data-i18n="casos.h2">Cuatro problemas reales.<br><em>Cuatro resultados medibles.</em></h2>
         <div class="casos-grid">
 
             <div class="caso-card">
                 <div class="caso-num">01</div>
-                <h3 class="caso-nombre">Creación del área de Operaciones de Tesorería</h3>
-                <p class="caso-empresa">WiZink Bank · Madrid · 2015–2019</p>
-                <div class="caso-block"><div class="caso-block-label">Problema</div><p class="caso-block-text">El banco no tenía estructura de back office de tesorería. Operaciones dependientes de terceros, sin procesos ni equipo dedicado.</p></div>
-                <div class="caso-block"><div class="caso-block-label">Acción</div><p class="caso-block-text">Diseñé el modelo operativo completo: procesos, sistemas de pagos, conexión con SWIFT y Banco de España. Seleccioné y formé al equipo. Migración a Iberclear.</p></div>
-                <div class="caso-block"><div class="caso-block-label">Impacto</div><p class="caso-block-text">De cero a departamento autónomo de 6 personas en 18 meses. ~€100K ahorro anual. El área sigue operando con el modelo que diseñé.</p></div>
-                <div class="caso-badges"><span class="badge">0 → 6 personas</span><span class="badge">~€100K/año</span><span class="badge">SWIFT · BdE</span></div>
+                <h3 class="caso-nombre" data-i18n="caso1.nombre">Creación del área de Operaciones de Tesorería</h3>
+                <p class="caso-empresa" data-i18n="caso1.empresa">WiZink Bank · Madrid · 2015–2019</p>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso1.prob">El banco no tenía estructura de back office de tesorería. Operaciones dependientes de terceros, sin procesos ni equipo dedicado.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.accion">Acción</div><p class="caso-block-text" data-i18n="caso1.accion">Diseñé el modelo operativo completo: procesos, sistemas de pagos, conexión con SWIFT y Banco de España. Seleccioné y formé al equipo. Migración a Iberclear.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso1.impacto">De cero a departamento autónomo de 6 personas en 18 meses. ~€100K ahorro anual. El área sigue operando con el modelo que diseñé.</p></div>
+                <div class="caso-badges"><span class="badge">0 → 6 <span data-i18n="caso1.badge1">personas</span></span><span class="badge">~€100K/<span data-i18n="badge.year">año</span></span><span class="badge">SWIFT · BdE</span></div>
             </div>
 
             <div class="caso-card">
                 <div class="caso-num">02</div>
-                <h3 class="caso-nombre">Foro de Expertos en Pagos</h3>
-                <p class="caso-empresa">ING Bank España &amp; Portugal · 2024</p>
-                <div class="caso-block"><div class="caso-block-label">Problema</div><p class="caso-block-text">Cinco áreas de negocio con impacto en pagos operaban con conocimiento fragmentado. Sin espacio común para alinear criterios ni resolver dudas técnicas.</p></div>
-                <div class="caso-block"><div class="caso-block-label">Acción</div><p class="caso-block-text">Identifiqué el problema, diseñé gobernanza, roadmap de sesiones y arquitectura de contenidos. Sin presupuesto asignado ni mandato jerárquico — puro liderazgo lateral.</p></div>
-                <div class="caso-block"><div class="caso-block-label">Impacto</div><p class="caso-block-text">87 profesionales de 5 áreas, 8 sesiones, 95% satisfacción. Adoptado como modelo de referencia interna de knowledge management.</p></div>
-                <div class="caso-badges"><span class="badge">87 profesionales</span><span class="badge">5 áreas</span><span class="badge">95% satisfacción</span></div>
+                <h3 class="caso-nombre" data-i18n="caso2.nombre">Foro de Expertos en Pagos</h3>
+                <p class="caso-empresa" data-i18n="caso2.empresa">ING Bank España &amp; Portugal · 2024</p>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso2.prob">Cinco áreas de negocio con impacto en pagos operaban con conocimiento fragmentado. Sin espacio común para alinear criterios ni resolver dudas técnicas.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.accion">Acción</div><p class="caso-block-text" data-i18n="caso2.accion">Identifiqué el problema, diseñé gobernanza, roadmap de sesiones y arquitectura de contenidos. Sin presupuesto asignado ni mandato jerárquico — puro liderazgo lateral.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso2.impacto">87 profesionales de 5 áreas, 8 sesiones, 95% satisfacción. Adoptado como modelo de referencia interna de knowledge management.</p></div>
+                <div class="caso-badges"><span class="badge">87 <span data-i18n="caso2.badge1">profesionales</span></span><span class="badge">5 <span data-i18n="caso2.badge2">áreas</span></span><span class="badge">95% <span data-i18n="caso2.badge3">satisfacción</span></span></div>
             </div>
 
             <div class="caso-card">
                 <div class="caso-num">03</div>
-                <h3 class="caso-nombre">Migración ISO20022 (CBPR+ / TARGET2)</h3>
-                <p class="caso-empresa">Minsait + BME Group · 2021–2024</p>
-                <div class="caso-block"><div class="caso-block-label">Problema</div><p class="caso-block-text">Cliente de banca institucional con deadline regulatorio del BCE para migrar a ISO20022. Múltiples equipos sin gobernanza unificada.</p></div>
-                <div class="caso-block"><div class="caso-block-label">Acción</div><p class="caso-block-text">Definí scope, roadmap de 12 meses y gobernanza de 3 workstreams paralelos. Coordinación multidisciplinar. Value Stream Mapping para identificar cuellos de botella.</p></div>
-                <div class="caso-block"><div class="caso-block-label">Impacto</div><p class="caso-block-text">20% de reducción en tiempo de ciclo. Entrega dentro del deadline regulatorio. Modelo de gobernanza reutilizado en proyectos posteriores.</p></div>
-                <div class="caso-badges"><span class="badge">20% reducción ciclo</span><span class="badge">ISO20022</span><span class="badge">Deadline BCE</span></div>
+                <h3 class="caso-nombre" data-i18n="caso3.nombre">Migración ISO20022 (CBPR+ / TARGET2)</h3>
+                <p class="caso-empresa" data-i18n="caso3.empresa">Minsait + BME Group · 2021–2024</p>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso3.prob">Cliente de banca institucional con deadline regulatorio del BCE para migrar a ISO20022. Múltiples equipos sin gobernanza unificada.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.accion">Acción</div><p class="caso-block-text" data-i18n="caso3.accion">Definí scope, roadmap de 12 meses y gobernanza de 3 workstreams paralelos. Coordinación multidisciplinar. Value Stream Mapping para identificar cuellos de botella.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso3.impacto">20% de reducción en tiempo de ciclo. Entrega dentro del deadline regulatorio. Modelo de gobernanza reutilizado en proyectos posteriores.</p></div>
+                <div class="caso-badges"><span class="badge">20% <span data-i18n="caso3.badge1">reducción ciclo</span></span><span class="badge">ISO20022</span><span class="badge" data-i18n="caso3.badge2">Deadline BCE</span></div>
             </div>
 
             <div class="caso-card">
                 <div class="caso-num">04</div>
-                <h3 class="caso-nombre">Control bancario corporativo: Banco Interno del Grupo</h3>
-                <p class="caso-empresa">Telefónica · Madrid · 2019–2021</p>
-                <div class="caso-block"><div class="caso-block-label">Problema</div><p class="caso-block-text">+200 cuentas bancarias en 20 entidades sin sistema unificado de control de costes, comisiones y condiciones contractuales. Coordinación España-Holanda.</p></div>
-                <div class="caso-block"><div class="caso-block-label">Acción</div><p class="caso-block-text">Creé framework de análisis de costes. Implementación de Pyxis (SAP) para control centralizado. Diseño del operating model del banco interno desde cero.</p></div>
-                <div class="caso-block"><div class="caso-block-label">Impacto</div><p class="caso-block-text">Visibilidad completa sobre costes y condiciones bancarias por primera vez en la organización. Marco de control adoptado como estándar.</p></div>
-                <div class="caso-badges"><span class="badge">+200 cuentas</span><span class="badge">20 entidades</span><span class="badge">Pyxis / SAP</span></div>
+                <h3 class="caso-nombre" data-i18n="caso4.nombre">Control bancario corporativo: Banco Interno del Grupo</h3>
+                <p class="caso-empresa" data-i18n="caso4.empresa">Telefónica · Madrid · 2019–2021</p>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso4.prob">+200 cuentas bancarias en 20 entidades sin sistema unificado de control de costes, comisiones y condiciones contractuales. Coordinación España-Holanda.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.accion">Acción</div><p class="caso-block-text" data-i18n="caso4.accion">Creé framework de análisis de costes. Implementación de Pyxis (SAP) para control centralizado. Diseño del operating model del banco interno desde cero.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso4.impacto">Visibilidad completa sobre costes y condiciones bancarias por primera vez en la organización. Marco de control adoptado como estándar.</p></div>
+                <div class="caso-badges"><span class="badge">+200 <span data-i18n="caso4.badge1">cuentas</span></span><span class="badge">20 <span data-i18n="caso4.badge2">entidades</span></span><span class="badge">Pyxis / SAP</span></div>
             </div>
 
         </div>
     </div>
 </section>
 
-<section class="section" id="metodo">
+<section class="section lang-fade" id="metodo">
     <div class="container fade-in">
-        <div class="section-label">Método</div>
-        <h2>Un patrón <em>consistente.</em></h2>
-        <div class="body-text"><p>No existe fórmula universal para transformar operaciones. Pero después de hacerlo en seis organizaciones diferentes, el proceso sigue la misma lógica:</p></div>
+        <div class="section-label" data-i18n="metodo.label">Método</div>
+        <h2 data-i18n="metodo.h2">Un patrón <em>consistente.</em></h2>
+        <div class="body-text"><p data-i18n="metodo.intro">No existe fórmula universal para transformar operaciones. Pero después de hacerlo en seis organizaciones diferentes, el proceso sigue la misma lógica:</p></div>
         <div class="method-steps">
-            <div class="step"><div class="step-num">01</div><div class="step-title">Diagnosticar</div><div class="step-text">Mapear el estado real con datos. Identificar fricciones de raíz, no síntomas. Comprender los incentivos que sostienen el problema.</div></div>
-            <div class="step"><div class="step-num">02</div><div class="step-title">Construir</div><div class="step-text">Diseñar lo que no existe: modelos operativos, procesos, equipos, gobernanza. Sin atajos que comprometan la solidez.</div></div>
-            <div class="step"><div class="step-num">03</div><div class="step-title">Ejecutar</div><div class="step-text">Gestionar el cambio con datos y con personas. Medir lo que importa. Iterar hasta que funcione.</div></div>
-            <div class="step"><div class="step-num">04</div><div class="step-title">Dejar capacidad</div><div class="step-text">El objetivo no es resolver el problema — es que la organización sea capaz de resolverlo sola. Eso diferencia una mejora de una transformación.</div></div>
+            <div class="step"><div class="step-num">01</div><div class="step-title" data-i18n="step1.title">Diagnosticar</div><div class="step-text" data-i18n="step1.text">Mapear el estado real con datos. Identificar fricciones de raíz, no síntomas. Comprender los incentivos que sostienen el problema.</div></div>
+            <div class="step"><div class="step-num">02</div><div class="step-title" data-i18n="step2.title">Construir</div><div class="step-text" data-i18n="step2.text">Diseñar lo que no existe: modelos operativos, procesos, equipos, gobernanza. Sin atajos que comprometan la solidez.</div></div>
+            <div class="step"><div class="step-num">03</div><div class="step-title" data-i18n="step3.title">Ejecutar</div><div class="step-text" data-i18n="step3.text">Gestionar el cambio con datos y con personas. Medir lo que importa. Iterar hasta que funcione.</div></div>
+            <div class="step"><div class="step-num">04</div><div class="step-title" data-i18n="step4.title">Dejar capacidad</div><div class="step-text" data-i18n="step4.text">El objetivo no es resolver el problema — es que la organización sea capaz de resolverlo sola. Eso diferencia una mejora de una transformación.</div></div>
         </div>
     </div>
 </section>
 
-<section class="section section-warm" id="trayectoria">
+<section class="section section-warm lang-fade" id="trayectoria">
     <div class="container fade-in">
-        <div class="section-label">Trayectoria</div>
-        <h2>Diecinueve años.<br><em>Siempre construyendo.</em></h2>
+        <div class="section-label" data-i18n="tray.label">Trayectoria</div>
+        <h2 data-i18n="tray.h2">Diecinueve años.<br><em>Siempre construyendo.</em></h2>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-period">2024 — Hoy</div>
-                <div class="timeline-content"><h3>Process Manager &amp; Transformation Lead | Product Owner (Bizum &amp; SEPA Instant)</h3><div class="timeline-org">ING Bank España &amp; Portugal</div><p class="timeline-desc">Supervisión de productos críticos de pago. Agile delivery lead del equipo PaySystems. Representante en grupos de Euro Digital e Innovación (Iberpay, BCE/BdE). Fundador del Foro de Expertos en Pagos. Programa de offshoring a Manila: €120K/año ahorro.</p></div>
+                <div class="timeline-period">2024 — <span data-i18n="tray.today">Hoy</span></div>
+                <div class="timeline-content"><h3 data-i18n="tray1.role">Process Manager &amp; Transformation Lead | Product Owner (Bizum &amp; SEPA Instant)</h3><div class="timeline-org">ING Bank España &amp; Portugal</div><p class="timeline-desc" data-i18n="tray1.desc">Supervisión de productos críticos de pago. Agile delivery lead del equipo PaySystems. Representante en grupos de Euro Digital e Innovación (Iberpay, BCE/BdE). Fundador del Foro de Expertos en Pagos. Programa de offshoring a Manila: €120K/año ahorro.</p></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">2022 — 2024</div>
-                <div class="timeline-content"><h3>Process Improvement Lead &amp; Treasury Specialist</h3><div class="timeline-org">BME Group (SIX Group)</div><p class="timeline-desc">Coordinación de migración ISO20022 para banca institucional. Value Stream Mapping y mejora de procesos post-trade.</p></div>
+                <div class="timeline-content"><h3 data-i18n="tray2.role">Process Improvement Lead &amp; Treasury Specialist</h3><div class="timeline-org">BME Group (SIX Group)</div><p class="timeline-desc" data-i18n="tray2.desc">Coordinación de migración ISO20022 para banca institucional. Value Stream Mapping y mejora de procesos post-trade.</p></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">2021 — 2022</div>
-                <div class="timeline-content"><h3>Senior Consultant &amp; Transformation Project Manager</h3><div class="timeline-org">Minsait (Indra)</div><p class="timeline-desc">Gestión integral de migración ISO20022. Coordinación multidisciplinar y change management.</p></div>
+                <div class="timeline-content"><h3 data-i18n="tray3.role">Senior Consultant &amp; Transformation Project Manager</h3><div class="timeline-org">Minsait (Indra)</div><p class="timeline-desc" data-i18n="tray3.desc">Gestión integral de migración ISO20022. Coordinación multidisciplinar y change management.</p></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">2019 — 2021</div>
-                <div class="timeline-content"><h3>Product Owner — Treasury &amp; Cash Management</h3><div class="timeline-org">Telefónica</div><p class="timeline-desc">Gestión de +200 cuentas bancarias en 20 entidades. Participación clave en la creación del banco interno del grupo.</p></div>
+                <div class="timeline-content"><h3 data-i18n="tray4.role">Product Owner — Treasury &amp; Cash Management</h3><div class="timeline-org">Telefónica</div><p class="timeline-desc" data-i18n="tray4.desc">Gestión de +200 cuentas bancarias en 20 entidades. Participación clave en la creación del banco interno del grupo.</p></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">2015 — 2019</div>
-                <div class="timeline-content"><h3>Head of Treasury Operations — Creación desde cero</h3><div class="timeline-org">WiZink Bank</div><p class="timeline-desc">Creación del departamento completo de operaciones de tesorería. De 0 a 6 personas en 18 meses.</p></div>
+                <div class="timeline-content"><h3 data-i18n="tray5.role">Head of Treasury Operations — Creación desde cero</h3><div class="timeline-org">WiZink Bank</div><p class="timeline-desc" data-i18n="tray5.desc">Creación del departamento completo de operaciones de tesorería. De 0 a 6 personas en 18 meses.</p></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">2006 — 2015</div>
-                <div class="timeline-content"><h3>Payment Operations Specialist</h3><div class="timeline-org">Citibank · Barcelona</div><p class="timeline-desc">Nueve años en transaction banking global: SWIFT, banca corresponsal, nostro/vostro, detección de fraude.</p></div>
+                <div class="timeline-content"><h3 data-i18n="tray6.role">Payment Operations Specialist</h3><div class="timeline-org">Citibank · Barcelona</div><p class="timeline-desc" data-i18n="tray6.desc">Nueve años en transaction banking global: SWIFT, banca corresponsal, nostro/vostro, detección de fraude.</p></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">1999 — 2006</div>
-                <div class="timeline-content"><h3>Oficial de Operaciones Logísticas</h3><div class="timeline-org">Armada de Brasil</div><p class="timeline-desc">Gestión logística en operaciones internacionales. La base de mi forma de operar: datos, personas, resultado.</p></div>
+                <div class="timeline-content"><h3 data-i18n="tray7.role">Oficial de Operaciones Logísticas</h3><div class="timeline-org" data-i18n="tray7.org">Armada de Brasil</div><p class="timeline-desc" data-i18n="tray7.desc">Gestión logística en operaciones internacionales. La base de mi forma de operar: datos, personas, resultado.</p></div>
             </div>
         </div>
         <div class="education-line">
-            <div class="education-label">Formación</div>
-            <p class="education-text">Máster en Project Management (OBS, 2023) · Executive MBA (EAE, 2018) · Grado en Ciencias Políticas y Administración (Universitat de Barcelona, 2015)</p>
-            <p class="education-text" style="margin-top:0.4rem">Lean Specialist (FM2S) · Power BI (Bilib) · SWIFT Payment Messages Professional</p>
+            <div class="education-label" data-i18n="edu.label">Formación</div>
+            <p class="education-text" data-i18n="edu.text1">Máster en Project Management (OBS, 2023) · Executive MBA (EAE, 2018) · Grado en Ciencias Políticas y Administración (Universitat de Barcelona, 2015)</p>
+            <p class="education-text" style="margin-top:0.4rem" data-i18n="edu.text2">Lean Specialist (FM2S) · Power BI (Bilib) · SWIFT Payment Messages Professional</p>
         </div>
     </div>
 </section>
 
-<section class="section" id="laboratorio">
+<section class="section lang-fade" id="laboratorio">
     <div class="container fade-in">
-        <div class="section-label">Laboratorio</div>
-        <h2>Cómo construyo <em>soluciones.</em></h2>
-        <div class="body-text"><p>No solo proceso la innovación — la prototipo. Herramientas funcionales construidas con IA generativa que nacen de necesidades reales: evaluación de talento, coaching de carrera y divulgación.</p></div>
+        <div class="section-label" data-i18n="lab.label">Laboratorio</div>
+        <h2 data-i18n="lab.h2">Cómo construyo <em>soluciones.</em></h2>
+        <div class="body-text"><p data-i18n="lab.intro">No solo proceso la innovación — la prototipo. Herramientas funcionales construidas con IA generativa que nacen de necesidades reales: evaluación de talento, coaching de carrera y divulgación.</p></div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem">
 
-            <!-- FlowForge PRO — insertar PRIMERO en el grid -->
-<a href="https://rozoca.github.io/Proyectos/flowforge-pro/" target="_blank" rel="noopener"
-   style="text-decoration:none;background:#0b0c10;border:1px solid #1e2035;border-radius:4px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s;grid-column:span 2"
-   onmouseover="this.style.borderColor='#d4a04a';this.style.boxShadow='0 6px 28px rgba(212,160,74,.12)'"
-   onmouseout="this.style.borderColor='#1e2035';this.style.boxShadow='none'">
-
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap">
-    <div style="flex:1;min-width:260px">
-      <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#d4a04a;display:block;margin-bottom:.7rem">Diseño &amp; Minería de Procesos</span>
-      <h3 style="font-family:var(--serif);font-size:1.45rem;color:#d8d6d0;margin-bottom:.5rem">FlowForge PRO</h3>
-      <p style="font-size:.88rem;color:rgba(216,214,208,.6);line-height:1.7;margin-bottom:0;max-width:480px">Herramienta de diagramación de procesos en el navegador — sin instalación, sin registro. Inspirada en Lucidchart y Miro, construida con la especificidad de quien lleva 19 años trabajando con procesos reales en banca y pagos.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:.4rem;min-width:220px">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#484a5c;margin-bottom:.3rem">Capacidades</div>
-      <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> SIPOC · DMAIC · Swim Lane · Value Stream</div>
-      <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> Formas libres, líneas y anotaciones</div>
-      <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> Analítica de proceso: tiempos, costes, bottlenecks</div>
-      <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> Exporta SVG, PNG, JSON · Compartir por URL</div>
-      <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> Ctrl+Z/Y · Auto-layout · Fit to view</div>
-    </div>
-  </div>
-
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid #1e2035;flex-wrap:wrap;gap:1rem">
-    <p style="font-size:.8rem;color:#484a5c;font-style:italic;margin:0">«Los procesos existen para servir a las personas, no al revés.»</p>
-    <span style="font-size:.83rem;font-weight:600;color:#d4a04a;letter-spacing:.03em">Abrir herramienta →</span>
-  </div>
-</a>
+            <!-- FlowForge PRO -->
+            <a href="https://rozoca.github.io/Proyectos/flowforge-pro/" target="_blank" rel="noopener"
+               style="text-decoration:none;background:#0b0c10;border:1px solid #1e2035;border-radius:4px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s;grid-column:span 2"
+               onmouseover="this.style.borderColor='#d4a04a';this.style.boxShadow='0 6px 28px rgba(212,160,74,.12)'"
+               onmouseout="this.style.borderColor='#1e2035';this.style.boxShadow='none'">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap">
+                <div style="flex:1;min-width:260px">
+                  <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#d4a04a;display:block;margin-bottom:.7rem" data-i18n="ff.tag">Diseño &amp; Minería de Procesos</span>
+                  <h3 style="font-family:var(--serif);font-size:1.45rem;color:#d8d6d0;margin-bottom:.5rem">FlowForge PRO</h3>
+                  <p style="font-size:.88rem;color:rgba(216,214,208,.6);line-height:1.7;margin-bottom:0;max-width:480px" data-i18n="ff.desc">Herramienta de diagramación de procesos en el navegador — sin instalación, sin registro. Inspirada en Lucidchart y Miro, construida con la especificidad de quien lleva 19 años trabajando con procesos reales en banca y pagos.</p>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:.4rem;min-width:220px">
+                  <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#484a5c;margin-bottom:.3rem" data-i18n="ff.cap.label">Capacidades</div>
+                  <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> SIPOC · DMAIC · Swim Lane · Value Stream</div>
+                  <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> <span data-i18n="ff.cap1">Formas libres, líneas y anotaciones</span></div>
+                  <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> <span data-i18n="ff.cap2">Analítica de proceso: tiempos, costes, bottlenecks</span></div>
+                  <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> <span data-i18n="ff.cap3">Exporta SVG, PNG, JSON · Compartir por URL</span></div>
+                  <div style="font-size:.82rem;color:rgba(216,214,208,.7);display:flex;gap:.6rem;align-items:center"><span style="color:#d4a04a">→</span> Ctrl+Z/Y · Auto-layout · Fit to view</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid #1e2035;flex-wrap:wrap;gap:1rem">
+                <p style="font-size:.8rem;color:#484a5c;font-style:italic;margin:0" data-i18n="ff.quote">«Los procesos existen para servir a las personas, no al revés.»</p>
+                <span style="font-size:.83rem;font-weight:600;color:#d4a04a;letter-spacing:.03em" data-i18n="ff.cta">Abrir herramienta →</span>
+              </div>
+            </a>
 
             <a href="https://rozoca.github.io/RV_PROFILE_STUDIO/" target="_blank" rel="noopener" style="text-decoration:none;background:#1a1a2e;border:1px solid #1a1a2e;border-radius:4px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s" onmouseover="this.style.borderColor='#c8622d';this.style.boxShadow='0 6px 22px rgba(26,26,46,.12)'" onmouseout="this.style.borderColor='#1a1a2e';this.style.boxShadow='none'">
-                <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#e8a87c;margin-bottom:.7rem">Coaching de Carrera</span>
+                <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#e8a87c;margin-bottom:.7rem" data-i18n="rvps.tag">Coaching de Carrera</span>
                 <h3 style="font-family:var(--serif);font-size:1.2rem;color:#fff;margin-bottom:.4rem">RV Profile Studio</h3>
-                <p style="font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:.7rem">Analizador de CV con puntuación algorítmica, análisis DAFO y compatibilidad con ofertas. Construido para mis sesiones de coaching de carrera como voluntario. Trilingüe.</p>
-                <span style="font-size:.83rem;font-weight:600;color:#e8a87c;margin-top:auto">Ver herramienta →</span>
+                <p style="font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:.7rem" data-i18n="rvps.desc">Analizador de CV con puntuación algorítmica, análisis DAFO y compatibilidad con ofertas. Construido para mis sesiones de coaching de carrera como voluntario. Trilingüe.</p>
+                <span style="font-size:.83rem;font-weight:600;color:#e8a87c;margin-top:auto" data-i18n="lab.cta.tool">Ver herramienta →</span>
             </a>
 
             <a href="https://rozoca.github.io/MI-Studio-Pro/" target="_blank" rel="noopener" style="text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:4px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s" onmouseover="this.style.borderColor='#c8622d';this.style.boxShadow='0 6px 22px rgba(26,26,46,.08)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
-                <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-warm);margin-bottom:.7rem">Evaluación de Talento</span>
+                <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-warm);margin-bottom:.7rem" data-i18n="mi.tag">Evaluación de Talento</span>
                 <h3 style="font-family:var(--serif);font-size:1.2rem;color:var(--ink);margin-bottom:.4rem">MI Studio Pro</h3>
-                <p style="font-size:.88rem;color:var(--ink-light);line-height:1.6;margin-bottom:.7rem">Autoevaluación de inteligencias múltiples basada en metodologías reconocidas (MIDAS). La utilizo en proyectos de voluntariado con jóvenes (Cruz Roja, Asociación Norte Joven).</p>
-                <span style="font-size:.83rem;font-weight:600;color:var(--accent-warm);margin-top:auto">Ver herramienta →</span>
+                <p style="font-size:.88rem;color:var(--ink-light);line-height:1.6;margin-bottom:.7rem" data-i18n="mi.desc">Autoevaluación de inteligencias múltiples basada en metodologías reconocidas (MIDAS). La utilizo en proyectos de voluntariado con jóvenes (Cruz Roja, Asociación Norte Joven).</p>
+                <span style="font-size:.83rem;font-weight:600;color:var(--accent-warm);margin-top:auto" data-i18n="lab.cta.tool">Ver herramienta →</span>
             </a>
 
             <a href="https://rozoca.github.io/filosofia-politica/index.html" target="_blank" rel="noopener" style="text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:4px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s;grid-column:span 2" onmouseover="this.style.borderColor='#c8622d';this.style.boxShadow='0 6px 22px rgba(26,26,46,.08)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
-                <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-warm);margin-bottom:.7rem">Pensamiento &amp; Divulgación</span>
-                <h3 style="font-family:var(--serif);font-size:1.2rem;color:var(--ink);margin-bottom:.4rem">Filosofía &amp; Política</h3>
-                <p style="font-size:.88rem;color:var(--ink-light);line-height:1.6;margin-bottom:.7rem">Un portal para entender de dónde vienen las ideas que gobiernan el mundo. Para curiosos que quieran explorar filosofía política de forma accesible — desde Sócrates hasta la era de la IA.</p>
-                <span style="font-size:.83rem;font-weight:600;color:var(--accent-warm);margin-top:auto">Explorar portal →</span>
+                <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-warm);margin-bottom:.7rem" data-i18n="fil.tag">Pensamiento &amp; Divulgación</span>
+                <h3 style="font-family:var(--serif);font-size:1.2rem;color:var(--ink);margin-bottom:.4rem" data-i18n="fil.h3">Filosofía &amp; Política</h3>
+                <p style="font-size:.88rem;color:var(--ink-light);line-height:1.6;margin-bottom:.7rem" data-i18n="fil.desc">Un portal para entender de dónde vienen las ideas que gobiernan el mundo. Para curiosos que quieran explorar filosofía política de forma accesible — desde Sócrates hasta la era de la IA.</p>
+                <span style="font-size:.83rem;font-weight:600;color:var(--accent-warm);margin-top:auto" data-i18n="fil.cta">Explorar portal →</span>
             </a>
 
         </div>
 
         <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)">
-            <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.8rem">Proyecto personal</div>
+            <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.8rem" data-i18n="lab.personal.label">Proyecto personal</div>
             <a href="https://rozoca.github.io/examenes-gabri/" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;gap:1.5rem;padding:1.2rem 1.5rem;background:var(--paper-warm);border:1px solid var(--border);border-radius:4px;transition:border-color .2s" onmouseover="this.style.borderColor='#c8622d'" onmouseout="this.style.borderColor='var(--border)'">
                 <div>
-                    <h3 style="font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:.3rem">El Rincón de Gabri</h3>
-                    <p style="font-size:.88rem;color:var(--ink-mid);line-height:1.6;font-weight:300;margin:0">Portal educativo gamificado para 4.º de Primaria. Hecho para mi hijo — zona de estudio interactiva con módulos de Ciencias, Matemáticas, Inglés y Sociales.</p>
+                    <h3 style="font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:.3rem" data-i18n="gabri.h3">El Rincón de Gabri</h3>
+                    <p style="font-size:.88rem;color:var(--ink-mid);line-height:1.6;font-weight:300;margin:0" data-i18n="gabri.desc">Portal educativo gamificado para 4.º de Primaria. Hecho para mi hijo — zona de estudio interactiva con módulos de Ciencias, Matemáticas, Inglés y Sociales.</p>
                 </div>
-                <span style="font-size:.83rem;font-weight:600;color:var(--accent-warm);white-space:nowrap">Ver portal →</span>
+                <span style="font-size:.83rem;font-weight:600;color:var(--accent-warm);white-space:nowrap" data-i18n="gabri.cta">Ver portal →</span>
             </a>
         </div>
     </div>
 </section>
 
-<section class="section section-warm" id="vision">
+<section class="section section-warm lang-fade" id="vision">
     <div class="container fade-in">
-        <div class="section-label">Visión</div>
-        <h2>El sector de pagos<br><em>en un punto de inflexión.</em></h2>
+        <div class="section-label" data-i18n="vision.label">Visión</div>
+        <h2 data-i18n="vision.h2">El sector de pagos<br><em>en un punto de inflexión.</em></h2>
         <div class="vision-text">
-            <p>SEPA Instant, ISO20022, Euro Digital y la presión regulatoria del BCE no son tendencias — son cambios de plataforma. Las organizaciones que lo entiendan como oportunidad estratégica, y no solo como carga de compliance, saldrán mejor posicionadas.</p>
-            <p>El Euro Digital no es un proyecto de IT. Es un rediseño del sistema monetario con implicaciones para el modelo de negocio bancario. Participar activamente en los grupos de trabajo de Iberpay y BCE/BdE es una posición de escucha privilegiada sobre adónde va el sistema.</p>
+            <p data-i18n="vision.p1">SEPA Instant, ISO20022, Euro Digital y la presión regulatoria del BCE no son tendencias — son cambios de plataforma. Las organizaciones que lo entiendan como oportunidad estratégica, y no solo como carga de compliance, saldrán mejor posicionadas.</p>
+            <p data-i18n="vision.p2">El Euro Digital no es un proyecto de IT. Es un rediseño del sistema monetario con implicaciones para el modelo de negocio bancario. Participar activamente en los grupos de trabajo de Iberpay y BCE/BdE es una posición de escucha privilegiada sobre adónde va el sistema.</p>
         </div>
     </div>
 </section>
 
-<section class="section" id="contacto">
+<section class="section lang-fade" id="contacto">
     <div class="container fade-in">
-        <div class="section-label">Contacto</div>
-        <h2>Hablemos de lo que<br><em>necesitas resolver.</em></h2>
-        <div class="body-text"><p>Abierto a roles senior en transformación, gestión de proyectos estratégicos, diseño de producto, oficinas de transformación o PMO donde pueda aportar impacto real en eficiencia, control y ejecución. Sector financiero, pagos y entornos regulados son mi terreno natural, pero el patrón aplica a cualquier operación compleja.</p></div>
+        <div class="section-label" data-i18n="contact.label">Contacto</div>
+        <h2 data-i18n="contact.h2">Hablemos de lo que<br><em>necesitas resolver.</em></h2>
+        <div class="body-text"><p data-i18n="contact.intro">Abierto a roles senior en transformación, gestión de proyectos estratégicos, diseño de producto, oficinas de transformación o PMO donde pueda aportar impacto real en eficiencia, control y ejecución. Sector financiero, pagos y entornos regulados son mi terreno natural, pero el patrón aplica a cualquier operación compleja.</p></div>
         <div class="contact-grid">
-            <div class="contact-item"><span class="contact-label">Email</span><span class="contact-value"><a href="mailto:rovid25@outlook.com">rovid25@outlook.com</a></span></div>
+            <div class="contact-item"><span class="contact-label" data-i18n="contact.email.label">Email</span><span class="contact-value"><a href="mailto:rovid25@outlook.com">rovid25@outlook.com</a></span></div>
             <div class="contact-item"><span class="contact-label">LinkedIn</span><span class="contact-value"><a href="https://linkedin.com/in/rvidal-projectmanager" target="_blank">rvidal-projectmanager</a></span></div>
-            <div class="contact-item"><span class="contact-label">Ubicación</span><span class="contact-value">Madrid, España</span></div>
-            <div class="contact-item"><span class="contact-label">Idiomas</span><span class="contact-value">Portugués nativo · Español bilingüe · Inglés B2+</span></div>
+            <div class="contact-item"><span class="contact-label" data-i18n="contact.location.label">Ubicación</span><span class="contact-value" data-i18n="contact.location.val">Madrid, España</span></div>
+            <div class="contact-item"><span class="contact-label" data-i18n="contact.langs.label">Idiomas</span><span class="contact-value" data-i18n="contact.langs.val">Portugués nativo · Español bilingüe · Inglés B2+</span></div>
         </div>
-        <div class="contact-cta"><a href="mailto:rovid25@outlook.com" class="btn-primary">Enviar email</a></div>
+        <div class="contact-cta"><a href="mailto:rovid25@outlook.com" class="btn-primary" data-i18n="contact.cta">Enviar email</a></div>
     </div>
 </section>
 
 <footer><div class="container"><p>Rodrigo Vidal · Madrid · 2025</p></div></footer>
 
 <script>
-    // Fade-in observer
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+// ─── TRANSLATIONS ───────────────────────────────────────────────────────────
+const T = {
+  es: {
+    "nav.problem": "El problema",
+    "nav.cases": "Casos",
+    "nav.method": "Método",
+    "nav.trajectory": "Trayectoria",
+    "nav.lab": "Laboratorio",
+    "nav.contact": "Contacto",
+    "hero.label": "Transformación & Liderazgo",
+    "hero.title": "Me contratan cuando hay que construir lo que no existe, ordenar lo que no funciona o transformar <em>lo que se ha quedado atrás.</em>",
+    "hero.sub": "+19 años en banca y sector financiero resolviendo problemas complejos que otros no saben diagnosticar. Construyo operaciones desde cero, ejecuto migraciones críticas y dejo equipos funcionando sin depender de mí.",
+    "hero.metric1": "equipo creado desde cero",
+    "hero.metric2": "profesionales coordinados",
+    "hero.metric3": "reducción de ciclo ISO20022",
+    "hero.cta1": "Ver cómo lo hago",
+    "hero.cta2": "Descargar CV (PDF)",
+    "logos.navy": "Armada de Brasil",
+    "brecha.label": "El problema",
+    "brecha.h2": "La brecha que pocas<br><em>organizaciones resuelven.</em>",
+    "brecha.col1.h3": "El desajuste",
+    "brecha.col1.p": "Los equipos que entienden cómo funcionan los sistemas por dentro y los que toman decisiones de negocio trabajan desconectados. Esa desconexión genera ineficiencias, falta de control y decisiones mal informadas.",
+    "brecha.col2.h3": "Lo que hago",
+    "brecha.col2.p": "Cierro esa brecha: traduzco complejidad técnica y operativa en decisiones que se pueden ejecutar. No diseño soluciones teóricas. Las implemento, construyo los equipos que las sostienen y dejo capacidad instalada.",
+    "casos.label": "Casos",
+    "casos.h2": "Cuatro problemas reales.<br><em>Cuatro resultados medibles.</em>",
+    "caso.problema": "Problema",
+    "caso.accion": "Acción",
+    "caso.impacto": "Impacto",
+    "caso1.nombre": "Creación del área de Operaciones de Tesorería",
+    "caso1.empresa": "WiZink Bank · Madrid · 2015–2019",
+    "caso1.prob": "El banco no tenía estructura de back office de tesorería. Operaciones dependientes de terceros, sin procesos ni equipo dedicado.",
+    "caso1.accion": "Diseñé el modelo operativo completo: procesos, sistemas de pagos, conexión con SWIFT y Banco de España. Seleccioné y formé al equipo. Migración a Iberclear.",
+    "caso1.impacto": "De cero a departamento autónomo de 6 personas en 18 meses. ~€100K ahorro anual. El área sigue operando con el modelo que diseñé.",
+    "caso1.badge1": "personas",
+    "badge.year": "año",
+    "caso2.nombre": "Foro de Expertos en Pagos",
+    "caso2.empresa": "ING Bank España & Portugal · 2024",
+    "caso2.prob": "Cinco áreas de negocio con impacto en pagos operaban con conocimiento fragmentado. Sin espacio común para alinear criterios ni resolver dudas técnicas.",
+    "caso2.accion": "Identifiqué el problema, diseñé gobernanza, roadmap de sesiones y arquitectura de contenidos. Sin presupuesto asignado ni mandato jerárquico — puro liderazgo lateral.",
+    "caso2.impacto": "87 profesionales de 5 áreas, 8 sesiones, 95% satisfacción. Adoptado como modelo de referencia interna de knowledge management.",
+    "caso2.badge1": "profesionales",
+    "caso2.badge2": "áreas",
+    "caso2.badge3": "satisfacción",
+    "caso3.nombre": "Migración ISO20022 (CBPR+ / TARGET2)",
+    "caso3.empresa": "Minsait + BME Group · 2021–2024",
+    "caso3.prob": "Cliente de banca institucional con deadline regulatorio del BCE para migrar a ISO20022. Múltiples equipos sin gobernanza unificada.",
+    "caso3.accion": "Definí scope, roadmap de 12 meses y gobernanza de 3 workstreams paralelos. Coordinación multidisciplinar. Value Stream Mapping para identificar cuellos de botella.",
+    "caso3.impacto": "20% de reducción en tiempo de ciclo. Entrega dentro del deadline regulatorio. Modelo de gobernanza reutilizado en proyectos posteriores.",
+    "caso3.badge1": "reducción ciclo",
+    "caso3.badge2": "Deadline BCE",
+    "caso4.nombre": "Control bancario corporativo: Banco Interno del Grupo",
+    "caso4.empresa": "Telefónica · Madrid · 2019–2021",
+    "caso4.prob": "+200 cuentas bancarias en 20 entidades sin sistema unificado de control de costes, comisiones y condiciones contractuales. Coordinación España-Holanda.",
+    "caso4.accion": "Creé framework de análisis de costes. Implementación de Pyxis (SAP) para control centralizado. Diseño del operating model del banco interno desde cero.",
+    "caso4.impacto": "Visibilidad completa sobre costes y condiciones bancarias por primera vez en la organización. Marco de control adoptado como estándar.",
+    "caso4.badge1": "cuentas",
+    "caso4.badge2": "entidades",
+    "metodo.label": "Método",
+    "metodo.h2": "Un patrón <em>consistente.</em>",
+    "metodo.intro": "No existe fórmula universal para transformar operaciones. Pero después de hacerlo en seis organizaciones diferentes, el proceso sigue la misma lógica:",
+    "step1.title": "Diagnosticar",
+    "step1.text": "Mapear el estado real con datos. Identificar fricciones de raíz, no síntomas. Comprender los incentivos que sostienen el problema.",
+    "step2.title": "Construir",
+    "step2.text": "Diseñar lo que no existe: modelos operativos, procesos, equipos, gobernanza. Sin atajos que comprometan la solidez.",
+    "step3.title": "Ejecutar",
+    "step3.text": "Gestionar el cambio con datos y con personas. Medir lo que importa. Iterar hasta que funcione.",
+    "step4.title": "Dejar capacidad",
+    "step4.text": "El objetivo no es resolver el problema — es que la organización sea capaz de resolverlo sola. Eso diferencia una mejora de una transformación.",
+    "tray.label": "Trayectoria",
+    "tray.h2": "Diecinueve años.<br><em>Siempre construyendo.</em>",
+    "tray.today": "Hoy",
+    "tray1.role": "Process Manager & Transformation Lead | Product Owner (Bizum & SEPA Instant)",
+    "tray1.desc": "Supervisión de productos críticos de pago. Agile delivery lead del equipo PaySystems. Representante en grupos de Euro Digital e Innovación (Iberpay, BCE/BdE). Fundador del Foro de Expertos en Pagos. Programa de offshoring a Manila: €120K/año ahorro.",
+    "tray2.role": "Process Improvement Lead & Treasury Specialist",
+    "tray2.desc": "Coordinación de migración ISO20022 para banca institucional. Value Stream Mapping y mejora de procesos post-trade.",
+    "tray3.role": "Senior Consultant & Transformation Project Manager",
+    "tray3.desc": "Gestión integral de migración ISO20022. Coordinación multidisciplinar y change management.",
+    "tray4.role": "Product Owner — Treasury & Cash Management",
+    "tray4.desc": "Gestión de +200 cuentas bancarias en 20 entidades. Participación clave en la creación del banco interno del grupo.",
+    "tray5.role": "Head of Treasury Operations — Creación desde cero",
+    "tray5.desc": "Creación del departamento completo de operaciones de tesorería. De 0 a 6 personas en 18 meses.",
+    "tray6.role": "Payment Operations Specialist",
+    "tray6.desc": "Nueve años en transaction banking global: SWIFT, banca corresponsal, nostro/vostro, detección de fraude.",
+    "tray7.role": "Oficial de Operaciones Logísticas",
+    "tray7.org": "Armada de Brasil",
+    "tray7.desc": "Gestión logística en operaciones internacionales. La base de mi forma de operar: datos, personas, resultado.",
+    "edu.label": "Formación",
+    "edu.text1": "Máster en Project Management (OBS, 2023) · Executive MBA (EAE, 2018) · Grado en Ciencias Políticas y Administración (Universitat de Barcelona, 2015)",
+    "edu.text2": "Lean Specialist (FM2S) · Power BI (Bilib) · SWIFT Payment Messages Professional",
+    "lab.label": "Laboratorio",
+    "lab.h2": "Cómo construyo <em>soluciones.</em>",
+    "lab.intro": "No solo proceso la innovación — la prototipo. Herramientas funcionales construidas con IA generativa que nacen de necesidades reales: evaluación de talento, coaching de carrera y divulgación.",
+    "lab.cta.tool": "Ver herramienta →",
+    "lab.personal.label": "Proyecto personal",
+    "ff.tag": "Diseño & Minería de Procesos",
+    "ff.desc": "Herramienta de diagramación de procesos en el navegador — sin instalación, sin registro. Inspirada en Lucidchart y Miro, construida con la especificidad de quien lleva 19 años trabajando con procesos reales en banca y pagos.",
+    "ff.cap.label": "Capacidades",
+    "ff.cap1": "Formas libres, líneas y anotaciones",
+    "ff.cap2": "Analítica de proceso: tiempos, costes, bottlenecks",
+    "ff.cap3": "Exporta SVG, PNG, JSON · Compartir por URL",
+    "ff.quote": "«Los procesos existen para servir a las personas, no al revés.»",
+    "ff.cta": "Abrir herramienta →",
+    "rvps.tag": "Coaching de Carrera",
+    "rvps.desc": "Analizador de CV con puntuación algorítmica, análisis DAFO y compatibilidad con ofertas. Construido para mis sesiones de coaching de carrera como voluntario. Trilingüe.",
+    "mi.tag": "Evaluación de Talento",
+    "mi.desc": "Autoevaluación de inteligencias múltiples basada en metodologías reconocidas (MIDAS). La utilizo en proyectos de voluntariado con jóvenes (Cruz Roja, Asociación Norte Joven).",
+    "fil.tag": "Pensamiento & Divulgación",
+    "fil.h3": "Filosofía & Política",
+    "fil.desc": "Un portal para entender de dónde vienen las ideas que gobiernan el mundo. Para curiosos que quieran explorar filosofía política de forma accesible — desde Sócrates hasta la era de la IA.",
+    "fil.cta": "Explorar portal →",
+    "gabri.h3": "El Rincón de Gabri",
+    "gabri.desc": "Portal educativo gamificado para 4.º de Primaria. Hecho para mi hijo — zona de estudio interactiva con módulos de Ciencias, Matemáticas, Inglés y Sociales.",
+    "gabri.cta": "Ver portal →",
+    "vision.label": "Visión",
+    "vision.h2": "El sector de pagos<br><em>en un punto de inflexión.</em>",
+    "vision.p1": "SEPA Instant, ISO20022, Euro Digital y la presión regulatoria del BCE no son tendencias — son cambios de plataforma. Las organizaciones que lo entiendan como oportunidad estratégica, y no solo como carga de compliance, saldrán mejor posicionadas.",
+    "vision.p2": "El Euro Digital no es un proyecto de IT. Es un rediseño del sistema monetario con implicaciones para el modelo de negocio bancario. Participar activamente en los grupos de trabajo de Iberpay y BCE/BdE es una posición de escucha privilegiada sobre adónde va el sistema.",
+    "contact.label": "Contacto",
+    "contact.h2": "Hablemos de lo que<br><em>necesitas resolver.</em>",
+    "contact.intro": "Abierto a roles senior en transformación, gestión de proyectos estratégicos, diseño de producto, oficinas de transformación o PMO donde pueda aportar impacto real en eficiencia, control y ejecución. Sector financiero, pagos y entornos regulados son mi terreno natural, pero el patrón aplica a cualquier operación compleja.",
+    "contact.email.label": "Email",
+    "contact.location.label": "Ubicación",
+    "contact.location.val": "Madrid, España",
+    "contact.langs.label": "Idiomas",
+    "contact.langs.val": "Portugués nativo · Español bilingüe · Inglés B2+",
+    "contact.cta": "Enviar email",
+  },
+  en: {
+    "nav.problem": "The problem",
+    "nav.cases": "Cases",
+    "nav.method": "Method",
+    "nav.trajectory": "Career",
+    "nav.lab": "Lab",
+    "nav.contact": "Contact",
+    "hero.label": "Transformation & Leadership",
+    "hero.title": "I'm brought in when something needs to be built from scratch, fixed when it's broken, or transformed <em>when it's been left behind.</em>",
+    "hero.sub": "+19 years in banking and financial services solving complex problems others can't diagnose. I build operations from zero, execute critical migrations, and leave teams that run without depending on me.",
+    "hero.metric1": "team built from scratch",
+    "hero.metric2": "professionals coordinated",
+    "hero.metric3": "ISO20022 cycle time reduction",
+    "hero.cta1": "See how I do it",
+    "hero.cta2": "Download CV (PDF)",
+    "logos.navy": "Brazilian Navy",
+    "brecha.label": "The problem",
+    "brecha.h2": "The gap few<br><em>organisations solve.</em>",
+    "brecha.col1.h3": "The disconnect",
+    "brecha.col1.p": "The teams that understand how systems work internally and those making business decisions operate in silos. That disconnect creates inefficiency, lack of control, and poorly informed decisions.",
+    "brecha.col2.h3": "What I do",
+    "brecha.col2.p": "I close that gap: I translate technical and operational complexity into decisions that can be executed. I don't design theoretical solutions. I implement them, build the teams that sustain them, and leave installed capacity behind.",
+    "casos.label": "Cases",
+    "casos.h2": "Four real problems.<br><em>Four measurable results.</em>",
+    "caso.problema": "Problem",
+    "caso.accion": "Action",
+    "caso.impacto": "Impact",
+    "caso1.nombre": "Building the Treasury Operations Department",
+    "caso1.empresa": "WiZink Bank · Madrid · 2015–2019",
+    "caso1.prob": "The bank had no treasury back office structure. Operations outsourced to third parties, no dedicated processes or team.",
+    "caso1.accion": "Designed the full operating model: processes, payment systems, SWIFT and Banco de España connectivity. Recruited and trained the team. Migration to Iberclear.",
+    "caso1.impacto": "Zero to autonomous 6-person department in 18 months. ~€100K annual savings. The department still runs on the model I designed.",
+    "caso1.badge1": "people",
+    "badge.year": "yr",
+    "caso2.nombre": "Payments Expert Forum",
+    "caso2.empresa": "ING Bank Spain & Portugal · 2024",
+    "caso2.prob": "Five business areas with payments impact operated with fragmented knowledge. No shared space to align criteria or resolve technical questions.",
+    "caso2.accion": "Identified the problem, designed governance, session roadmap and content architecture. No assigned budget or hierarchical mandate — pure lateral leadership.",
+    "caso2.impacto": "87 professionals across 5 areas, 8 sessions, 95% satisfaction. Adopted as the internal reference model for knowledge management.",
+    "caso2.badge1": "professionals",
+    "caso2.badge2": "areas",
+    "caso2.badge3": "satisfaction",
+    "caso3.nombre": "ISO20022 Migration (CBPR+ / TARGET2)",
+    "caso3.empresa": "Minsait + BME Group · 2021–2024",
+    "caso3.prob": "Institutional banking client with ECB regulatory deadline to migrate to ISO20022. Multiple teams without unified governance.",
+    "caso3.accion": "Defined scope, 12-month roadmap and governance for 3 parallel workstreams. Multidisciplinary coordination. Value Stream Mapping to identify bottlenecks.",
+    "caso3.impacto": "20% reduction in cycle time. Delivered within the regulatory deadline. Governance model reused in subsequent projects.",
+    "caso3.badge1": "cycle reduction",
+    "caso3.badge2": "ECB Deadline",
+    "caso4.nombre": "Corporate Banking Control: Group Internal Bank",
+    "caso4.empresa": "Telefónica · Madrid · 2019–2021",
+    "caso4.prob": "+200 bank accounts across 20 entities with no unified system for cost control, fees or contractual conditions. Spain-Netherlands coordination.",
+    "caso4.accion": "Created a cost analysis framework. Implemented Pyxis (SAP) for centralised control. Designed the internal bank operating model from scratch.",
+    "caso4.impacto": "Full visibility over banking costs and conditions for the first time in the organisation. Control framework adopted as the standard.",
+    "caso4.badge1": "accounts",
+    "caso4.badge2": "entities",
+    "metodo.label": "Method",
+    "metodo.h2": "A <em>consistent</em> pattern.",
+    "metodo.intro": "There is no universal formula for transforming operations. But after doing it in six different organisations, the process follows the same logic:",
+    "step1.title": "Diagnose",
+    "step1.text": "Map the real state with data. Identify root friction, not symptoms. Understand the incentives that sustain the problem.",
+    "step2.title": "Build",
+    "step2.text": "Design what doesn't exist: operating models, processes, teams, governance. No shortcuts that compromise solidity.",
+    "step3.title": "Execute",
+    "step3.text": "Manage change with data and with people. Measure what matters. Iterate until it works.",
+    "step4.title": "Leave capacity",
+    "step4.text": "The goal is not to solve the problem — it's to make the organisation capable of solving it alone. That's what separates an improvement from a transformation.",
+    "tray.label": "Career",
+    "tray.h2": "Nineteen years.<br><em>Always building.</em>",
+    "tray.today": "Today",
+    "tray1.role": "Process Manager & Transformation Lead | Product Owner (Bizum & SEPA Instant)",
+    "tray1.desc": "Oversight of critical payment products. Agile delivery lead for the PaySystems team. Representative in Euro Digital and Innovation working groups (Iberpay, ECB/BdE). Founder of the Payments Expert Forum. Manila offshoring programme: €120K/yr savings.",
+    "tray2.role": "Process Improvement Lead & Treasury Specialist",
+    "tray2.desc": "Coordination of ISO20022 migration for institutional banking. Value Stream Mapping and post-trade process improvement.",
+    "tray3.role": "Senior Consultant & Transformation Project Manager",
+    "tray3.desc": "Full management of ISO20022 migration. Multidisciplinary coordination and change management.",
+    "tray4.role": "Product Owner — Treasury & Cash Management",
+    "tray4.desc": "Management of +200 bank accounts across 20 entities. Key role in creating the group's internal bank.",
+    "tray5.role": "Head of Treasury Operations — Built from scratch",
+    "tray5.desc": "Created the complete treasury operations department. Zero to 6 people in 18 months.",
+    "tray6.role": "Payment Operations Specialist",
+    "tray6.desc": "Nine years in global transaction banking: SWIFT, correspondent banking, nostro/vostro, fraud detection.",
+    "tray7.role": "Logistics Operations Officer",
+    "tray7.org": "Brazilian Navy",
+    "tray7.desc": "Logistics management in international operations. The foundation of how I operate: data, people, results.",
+    "edu.label": "Education",
+    "edu.text1": "Master in Project Management (OBS, 2023) · Executive MBA (EAE, 2018) · Degree in Political Science & Public Administration (Universitat de Barcelona, 2015)",
+    "edu.text2": "Lean Specialist (FM2S) · Power BI (Bilib) · SWIFT Payment Messages Professional",
+    "lab.label": "Lab",
+    "lab.h2": "How I build <em>solutions.</em>",
+    "lab.intro": "I don't just process innovation — I prototype it. Functional tools built with generative AI that address real needs: talent assessment, career coaching, and knowledge sharing.",
+    "lab.cta.tool": "Open tool →",
+    "lab.personal.label": "Personal project",
+    "ff.tag": "Process Design & Mining",
+    "ff.desc": "Browser-based process diagramming tool — no installation, no sign-up. Inspired by Lucidchart and Miro, built with the specificity of someone with 19 years working with real processes in banking and payments.",
+    "ff.cap.label": "Features",
+    "ff.cap1": "Free shapes, lines and annotations",
+    "ff.cap2": "Process analytics: time, cost, bottlenecks",
+    "ff.cap3": "Export SVG, PNG, JSON · Share via URL",
+    "ff.quote": "«Processes exist to serve people, not the other way around.»",
+    "ff.cta": "Open tool →",
+    "rvps.tag": "Career Coaching",
+    "rvps.desc": "CV analyser with algorithmic scoring, SWOT analysis and offer compatibility. Built for my volunteer career coaching sessions. Trilingual.",
+    "mi.tag": "Talent Assessment",
+    "mi.desc": "Multiple intelligences self-assessment based on recognised methodologies (MIDAS). Used in volunteer projects with young people (Red Cross, Norte Joven Association).",
+    "fil.tag": "Thought & Knowledge",
+    "fil.h3": "Philosophy & Politics",
+    "fil.desc": "A portal to understand where the ideas that govern the world come from. For the curious who want to explore political philosophy accessibly — from Socrates to the AI era.",
+    "fil.cta": "Explore portal →",
+    "gabri.h3": "Gabri's Corner",
+    "gabri.desc": "Gamified educational portal for Year 4. Built for my son — interactive study area with Science, Maths, English and Social Studies modules.",
+    "gabri.cta": "See portal →",
+    "vision.label": "Vision",
+    "vision.h2": "The payments sector<br><em>at an inflection point.</em>",
+    "vision.p1": "SEPA Instant, ISO20022, Digital Euro and ECB regulatory pressure are not trends — they are platform shifts. Organisations that understand this as a strategic opportunity, not just a compliance burden, will emerge stronger.",
+    "vision.p2": "The Digital Euro is not an IT project. It is a redesign of the monetary system with implications for the banking business model. Active participation in Iberpay and ECB/BdE working groups is a privileged listening post on where the system is heading.",
+    "contact.label": "Contact",
+    "contact.h2": "Let's talk about what<br><em>you need to solve.</em>",
+    "contact.intro": "Open to senior roles in transformation, strategic project management, product design, transformation offices or PMO where I can deliver real impact on efficiency, control and execution. Financial services, payments and regulated environments are my natural ground — but the pattern applies to any complex operation.",
+    "contact.email.label": "Email",
+    "contact.location.label": "Location",
+    "contact.location.val": "Madrid, Spain",
+    "contact.langs.label": "Languages",
+    "contact.langs.val": "Portuguese (native) · Spanish (bilingual) · English B2+",
+    "contact.cta": "Send email",
+  }
+};
 
-    // Mobile menu
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinksList = document.getElementById('nav-links');
-    mobileMenu.addEventListener('click', () => {
-        mobileMenu.classList.toggle('is-active');
-        navLinksList.classList.toggle('active');
+// ─── ENGINE ──────────────────────────────────────────────────────────────────
+let currentLang = localStorage.getItem('rv_lang') || (navigator.language.startsWith('en') ? 'en' : 'es');
+
+function applyLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang][key] !== undefined) {
+      el.innerHTML = T[lang][key];
+    }
+  });
+  document.documentElement.lang = lang;
+  document.title = lang === 'en'
+    ? 'Rodrigo Vidal — Transformation & Leadership'
+    : 'Rodrigo Vidal — Transformación & Liderazgo';
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+}
+
+function setLang(lang) {
+  if (lang === currentLang) return;
+  // Fade transition
+  document.querySelectorAll('.lang-fade').forEach(el => el.classList.add('switching'));
+  setTimeout(() => {
+    currentLang = lang;
+    localStorage.setItem('rv_lang', lang);
+    applyLang(lang);
+    // Update URL param without reload
+    const url = new URL(window.location);
+    url.searchParams.set('lang', lang);
+    window.history.replaceState({}, '', url);
+    document.querySelectorAll('.lang-fade').forEach(el => el.classList.remove('switching'));
+  }, 180);
+}
+
+// Init: check URL param first, then localStorage, then browser
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'en' || urlLang === 'es') currentLang = urlLang;
+applyLang(currentLang);
+
+// ─── SCROLL FADE ─────────────────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// ─── MOBILE MENU ─────────────────────────────────────────────────────────────
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinksList = document.getElementById('nav-links');
+mobileMenu.addEventListener('click', () => {
+    mobileMenu.classList.toggle('is-active');
+    navLinksList.classList.toggle('active');
+});
+navLinksList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-active');
+        navLinksList.classList.remove('active');
     });
-    navLinksList.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('is-active');
-            navLinksList.classList.remove('active');
-        });
-    });
+});
 </script>
 
 </body>
