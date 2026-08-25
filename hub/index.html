@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consola · Proyectos rozoca.github.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1A22;
+    --panel:#10242E;
+    --panel-hi:#153040;
+    --line:#1E3D4C;
+    --bone:#E7EEEA;
+    --mute:#7F9AA5;
+    --signal:#E8B45C;
+    --live:#5FBF9B;
+    --dead:#B4614F;
+    --r:3px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      linear-gradient(180deg, #0D1F29 0%, var(--ink) 45%),
+      var(--ink);
+    background-attachment:fixed;
+    color:var(--bone);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 75%);
+            mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 75%);
+  }
+  .wrap{position:relative;max-width:1040px;margin:0 auto;padding:40px 24px 72px}
+
+  /* ---- cabecera ---- */
+  header{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between;
+         padding-bottom:20px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--signal);margin:0 0 10px}
+  h1{margin:0;font-size:clamp(26px,4.4vw,40px);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+  h1 em{font-style:normal;color:var(--mute)}
+  .meta{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);text-align:right;line-height:1.7}
+  .meta b{color:var(--bone);font-weight:500}
+
+  /* ---- barra de comando ---- */
+  .command{margin:22px 0 26px;display:flex;align-items:center;gap:12px;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px}
+  .command span{font-family:"IBM Plex Mono",monospace;color:var(--signal);font-size:14px}
+  .command input{flex:1;background:none;border:0;outline:0;color:var(--bone);
+    font-family:"IBM Plex Mono",monospace;font-size:14px}
+  .command input::placeholder{color:var(--mute)}
+  .command kbd{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--mute);
+    border:1px solid var(--line);border-radius:2px;padding:3px 6px}
+
+  /* ---- rejilla ---- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+  .card{position:relative;display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--r);padding:16px 16px 14px;transition:border-color .16s,background .16s,transform .16s}
+  .card:hover{border-color:var(--signal);background:var(--panel-hi);transform:translateY(-2px)}
+  .card.dim{display:none}
+
+  /* signature: keycap */
+  .key{flex:0 0 auto;width:34px;height:34px;border-radius:5px;background:#0A171F;
+    border:1px solid var(--line);border-bottom-width:3px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:600;color:var(--signal)}
+  .card:hover .key{background:var(--signal);color:#0A171F;border-color:var(--signal)}
+
+  .body{min-width:0;flex:1}
+  .name{margin:0 0 3px;font-size:15px;font-weight:600;letter-spacing:-.01em}
+  .name a{color:inherit;text-decoration:none}
+  .name a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+  .desc{margin:0 0 10px;font-size:12.5px;line-height:1.5;color:var(--mute)}
+  .url{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--mute);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:10px}
+  .actions{display:flex;gap:8px;flex-wrap:wrap}
+  .actions a{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--bone);text-decoration:none;border:1px solid var(--line);border-radius:2px;padding:4px 9px;transition:.16s}
+  .actions a:hover{border-color:var(--signal);color:var(--signal)}
+  .tag{position:absolute;top:14px;right:14px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--live)}
+  .tag.check{color:var(--dead)}
+
+  /* ---- pie ---- */
+  .rail{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .rail-label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--mute);margin-right:6px}
+  .rail a{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--bone);text-decoration:none;
+    border-bottom:1px solid var(--line);padding-bottom:2px}
+  .rail a:hover{color:var(--signal);border-color:var(--signal)}
+  .note{margin-top:26px;font-size:12px;line-height:1.6;color:var(--mute);max-width:60ch}
+  .empty{font-family:"IBM Plex Mono",monospace;color:var(--mute);font-size:13px;padding:24px 2px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <p class="eyebrow">rozoca.github.io · consola</p>
+      <h1>Todo lo que he publicado, <em>en una sola pantalla.</em></h1>
+    </div>
+    <div class="meta">
+      <div><b>7</b> proyectos en línea</div>
+      <div>usuario <b>rozoca</b></div>
+      <div id="clock">—</div>
+    </div>
+  </header>
+
+  <div class="command">
+    <span>›</span>
+    <input id="q" type="text" placeholder="Escribe para filtrar — o pulsa 1…8 para abrir" aria-label="Filtrar proyectos">
+    <kbd>/</kbd>
+  </div>
+
+  <div class="grid" id="grid">
+
+    <article class="card" data-key="1" data-url="https://rozoca.github.io/" data-text="portal marca personal cv transformacion liderazgo">
+      <div class="key">1</div>
+      <div class="body">
+        <h2 class="name"><a href="https://rozoca.github.io/">Portal · Marca personal</a></h2>
+        <p class="desc">Casos, método, trayectoria y laboratorio. La página que enseñas en una entrevista.</p>
+        <div class="url">rozoca.github.io</div>
+        <div class="actions">
+          <a href="https://rozoca.github.io/">Abrir</a>
+          <a href="https://github.com/rozoca/Rozoca.github.io">Repo</a>
+        </div>
+      </div>
+      <span class="tag">activo</span>
+    </article>
+
+    <article class="card" data-key="2" data-url="https://rozoca.github.io/Proyectos/flowforge-pro/" data-text="flowforge pro procesos bpmn sipoc dmaic swimlane vsm diagramas">
+      <div class="key">2</div>
+      <div class="body">
+        <h2 class="name"><a href="https://rozoca.github.io/Proyectos/flowforge-pro/">FlowForge PRO</a></h2>
+        <p class="desc">Diagramación de procesos en el navegador: SIPOC, DMAIC, swim lane, value stream.</p>
+        <div class="url">rozoca.github.io/Proyectos/flowforge-pro/</div>
+        <div class="actions">
+          <a href="https://rozoca.github.io/Proyectos/flowforge-pro/">Abrir</a>
+          <a href="https://github.com/rozoca/Proyectos">Repo</a>
+        </div>
+      </div>
+      <span class="tag">activo</span>
+    </article>
+
+    <article class="card" data-key="3" data-url="https://rozoca.github.io/RV_PROFILE_STUDIO/" data-text="rv profile studio cv analisis dafo coaching carrera profilefit">
+      <div class="key">3</div>
+      <div class="body">
+        <h2 class="name"><a href="https://rozoca.github.io/RV_PROFILE_STUDIO/">RV Profile Studio</a></h2>
+        <p class="desc">Analizador de CV con puntuación, DAFO y encaje con ofertas. Trilingüe.</p>
+        <div class="url">rozoca.github.io/RV_PROFILE_STUDIO/</div>
+        <div class="actions">
+          <a href="https://rozoca.github.io/RV_PROFILE_STUDIO/">Abrir</a>
+          <a href="https://github.com/rozoca/RV_PROFILE_STUDIO">Repo</a>
+        </div>
+      </div>
+      <span class="tag">activo</span>
+    </article>
+
+    <article class="card" data-key="4" data-url="https://rozoca.github.io/MI-Studio-Pro/" data-text="mi studio pro inteligencias multiples midas talento voluntariado">
+      <div class="key">4</div>
+      <div class="body">
+        <h2 class="name"><a href="https://rozoca.github.io/MI-Studio-Pro/">MI Studio Pro</a></h2>
+        <p class="desc">Autoevaluación de inteligencias múltiples (MIDAS) para sesiones de voluntariado.</p>
+        <div class="url">rozoca.github.io/MI-Studio-Pro/</div>
+        <div class="actions">
+          <a href="https://rozoca.github.io/MI-Studio-Pro/">Abrir</a>
+          <a href="https://github.com/rozoca/MI-Studio-Pro">Repo</a>
+        </div>
+      </div>
+      <span class="tag">activo</span>
+    </article>
+
+    <article class="card" data-key="5" data-url="https://rozoca.github.io/filosofia-politica/index.html" data-text="filosofia politica portal modulos socrates ideas pensamiento">
+      <div class="key">5</div>
+      <div class="body">
+        <h2 class="name"><a href="https://rozoca.github.io/filosofia-politica/index.html">Filosofía &amp; Política</a></h2>
+        <p class="desc">Portal de divulgación: de Sócrates a la era de la IA. Fases I–IV publicadas.</p>
+        <div class="url">rozoca.github.io/filosofia-politica/</div>
+        <div class="actions">
+          <a href="https://rozoca.github.io/filosofia-politica/index.html">Abrir</a>
+          <a href="https://github.com/rozoca/filosofia-politica">Repo</a>
+        </div>
+      </div>
+      <span class="tag">activo</span>
+    </article>
+
+    <article class="card" data-key="6" data-url="https://rozoca.github.io/examenes-gabri/" data-text="rincon de gabri examenes primaria quizzes juegos ciencias matematicas ingles sociales">
+      <div class="key">6</div>
+      <div class="body">
+        <h2 class="name"><a href="https://rozoca.github.io/examenes-gabri/">El Rincón de Gabri</a></h2>
+        <p class="desc">Zona de estudio gamificada: Ciencias, Matemáticas, Inglés y Sociales.</p>
+        <div class="url">rozoca.github.io/examenes-gabri/</div>
+        <div class="actions">
+          <a href="https://rozoca.github.io/examenes-gabri/">Abrir</a>
+          <a href="https://github.com/rozoca/examenes-gabri">Repo</a>
+        </div>
+      </div>
+      <span class="tag">activo</span>
+    </article>
+
+    <article class="card" data-key="7" data-url="https://rozoca.github.io/examenes-gabri/expedicion-5-primaria.html" data-text="expedicion 5 primaria gabri campamentos montaña 50 retos temporada">
+      <div class="key">7</div>
+      <div class="body">
+        <h2 class="name"><a href="https://rozoca.github.io/examenes-gabri/expedicion-5-primaria.html">Expedición 5º · Gabri</a></h2>
+        <p class="desc">Cuatro campamentos, 50 retos y una cumbre. La temporada 2026-27.</p>
+        <div class="url">…/examenes-gabri/expedicion-5-primaria.html</div>
+        <div class="actions">
+          <a href="https://rozoca.github.io/examenes-gabri/expedicion-5-primaria.html">Abrir</a>
+          <a href="https://github.com/rozoca/examenes-gabri">Repo</a>
+        </div>
+      </div>
+      <span class="tag">nuevo</span>
+    </article>
+
+    <article class="card" data-key="8" data-url="https://rozoca.github.io/CV_Transformation_RV.pdf" data-text="cv curriculum pdf transformation descargar">
+      <div class="key">8</div>
+      <div class="body">
+        <h2 class="name"><a href="https://rozoca.github.io/CV_Transformation_RV.pdf">CV · Transformation (PDF)</a></h2>
+        <p class="desc">Versión pública enlazada desde el portal. Comparte este enlace directo.</p>
+        <div class="url">rozoca.github.io/CV_Transformation_RV.pdf</div>
+        <div class="actions">
+          <a href="https://rozoca.github.io/CV_Transformation_RV.pdf">Abrir</a>
+        </div>
+      </div>
+      <span class="tag">activo</span>
+    </article>
+
+    <article class="card" data-key="9" data-url="https://github.com/rozoca?tab=repositories" data-text="viabilitylab viabilidad negocio pendiente revisar repositorios">
+      <div class="key">9</div>
+      <div class="body">
+        <h2 class="name"><a href="https://github.com/rozoca?tab=repositories">ViabilityLab</a></h2>
+        <p class="desc">No aparece enlazado en el portal ni pude confirmar su ruta. Abre tus repos para localizarlo o archivarlo.</p>
+        <div class="url">ruta sin confirmar</div>
+        <div class="actions">
+          <a href="https://github.com/rozoca?tab=repositories">Ver repos</a>
+        </div>
+      </div>
+      <span class="tag check">revisar</span>
+    </article>
+
+  </div>
+
+  <p class="empty" id="empty" style="display:none">Sin coincidencias. Borra el filtro con Esc.</p>
+
+  <div class="rail">
+    <span class="rail-label">Atajos</span>
+    <a href="https://github.com/rozoca">Perfil GitHub</a>
+    <a href="https://github.com/rozoca?tab=repositories">Todos los repos</a>
+    <a href="https://linkedin.com/in/rvidal-projectmanager">LinkedIn</a>
+    <a href="mailto:rovid25@outlook.com">rovid25@outlook.com</a>
+  </div>
+
+  <p class="note">Pulsa un número (1-8) para abrir el proyecto en una pestaña nueva. Pulsa <strong>/</strong> para buscar, <strong>Esc</strong> para limpiar. Guarda este archivo en marcadores o súbelo como <code>/hub/index.html</code> en tu repo principal.</p>
+
+</div>
+
+<script>
+  var q = document.getElementById('q');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var empty = document.getElementById('empty');
+
+  function filter(){
+    var v = q.value.trim().toLowerCase();
+    var hits = 0;
+    cards.forEach(function(c){
+      var hay = (c.dataset.text + ' ' + c.textContent).toLowerCase();
+      var ok = !v || hay.indexOf(v) > -1;
+      c.classList.toggle('dim', !ok);
+      if(ok) hits++;
+    });
+    empty.style.display = hits ? 'none' : 'block';
+  }
+  q.addEventListener('input', filter);
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === '/' && document.activeElement !== q){ e.preventDefault(); q.focus(); return; }
+    if(e.key === 'Escape'){ q.value=''; filter(); q.blur(); return; }
+    if(document.activeElement === q) return;
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    var card = cards.filter(function(c){ return c.dataset.key === e.key; })[0];
+    if(card){ window.open(card.dataset.url, '_blank', 'noopener'); }
+  });
+
+  function tick(){
+    var d = new Date();
+    var p = function(n){ return n < 10 ? '0'+n : n; };
+    document.getElementById('clock').textContent =
+      p(d.getDate())+'.'+p(d.getMonth()+1)+'.'+d.getFullYear()+' · '+p(d.getHours())+':'+p(d.getMinutes());
+  }
+  tick(); setInterval(tick, 20000);
+</script>
+</body>
+</html>
