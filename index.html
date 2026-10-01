@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodrigo Vidal — Transformación & Liderazgo</title>
+    <title>Rodrigo Vidal — Transformación &amp; Liderazgo</title>
     <meta name="description" content="Especialista en transformación de procesos y gestión del cambio. +19 años en banca y sector financiero.">
-    <meta property="og:title" content="Rodrigo Vidal — Transformación & Liderazgo">
+    <meta property="og:title" content="Rodrigo Vidal — Transformación &amp; Liderazgo">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rozoca.github.io/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&amp;display=swap" rel="stylesheet">
     <style>
         :root{--ink:#1a1a1a;--ink-mid:#3d3d3d;--ink-light:#6b6b6b;--paper:#fafaf8;--paper-warm:#f4f1eb;--accent:#1B5E7B;--accent-warm:#c8622d;--border:#ddd9d0;--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
         *{margin:0;padding:0;box-sizing:border-box}
@@ -147,6 +147,11 @@
             .menu-toggle.is-active .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
         }
         @media(max-width:480px){
+            .lab-grid{grid-template-columns:1fr!important}
+            .lab-grid>a{grid-column:span 1!important;min-width:0;padding:1.5rem!important}
+            .lab-grid>a>div>div{min-width:0!important}
+            .hero-text{min-width:0}
+            .hero-meta-item a{overflow-wrap:anywhere}
             .method-steps{grid-template-columns:1fr}
         }
     </style>
@@ -177,20 +182,20 @@
 <header class="hero lang-fade">
     <div class="hero-inner">
         <div class="hero-text">
-            <div class="hero-label" data-i18n="hero.label">Transformación & Liderazgo</div>
+            <div class="hero-label" data-i18n="hero.label">Transformación &amp; Liderazgo</div>
             <h1 class="hero-title" data-i18n="hero.title">Me contratan cuando hay que construir lo que no existe, ordenar lo que no funciona o transformar <em>lo que se ha quedado atrás.</em></h1>
-            <p class="hero-sub" data-i18n="hero.sub">+19 años en banca y sector financiero resolviendo problemas complejos que otros no saben diagnosticar. Construyo operaciones desde cero, ejecuto migraciones críticas y dejo equipos funcionando sin depender de mí.</p>
+            <p class="hero-sub" data-i18n="hero.sub">+19 años en banca y sector financiero conectando pagos, transformación y mejora de procesos. Construyo modelos operativos, coordino migraciones críticas y desarrollo equipos capaces de sostener el cambio. Actualmente en Inversis.</p>
             <div class="hero-metrics">
-                <span class="hero-metric"><strong>0 → 6</strong> <span data-i18n="hero.metric1">equipo creado desde cero</span></span>
-                <span class="hero-metric"><strong>87</strong> <span data-i18n="hero.metric2">profesionales coordinados</span></span>
-                <span class="hero-metric"><strong>20%</strong> <span data-i18n="hero.metric3">reducción de ciclo ISO20022</span></span>
+                <span class="hero-metric"><strong data-i18n="metric.build">Crear</strong> <span data-i18n="hero.metric1">operaciones desde cero</span></span>
+                <span class="hero-metric"><strong data-i18n="metric.connect">Conectar</strong> <span data-i18n="hero.metric2">conocimiento compartido</span></span>
+                <span class="hero-metric"><strong data-i18n="metric.transform">Transformar</strong> <span data-i18n="hero.metric3">pagos y transformación</span></span>
             </div>
             <div class="hero-buttons">
                 <a href="#casos" class="btn-primary" data-i18n="hero.cta1">Ver cómo lo hago</a>
-                <a href="CV_Transformation_RV.pdf" class="btn-secondary" target="_blank" data-i18n="hero.cta2">Descargar CV (PDF)</a>
+                <a href="Rodrigo_Vidal_CV_ES.pdf" download="Rodrigo_Vidal_CV_ES.pdf" class="btn-secondary" target="_blank" data-i18n="hero.cta2">Descargar CV (PDF)</a>
             </div>
             <div class="hero-meta">
-                <div class="hero-meta-item">Madrid, España</div>
+                <div class="hero-meta-item" data-i18n="meta.location">Madrid, España</div>
                 <div class="hero-meta-item"><a href="mailto:rovid25@outlook.com">rovid25@outlook.com</a></div>
                 <div class="hero-meta-item"><a href="https://linkedin.com/in/rvidal-projectmanager" target="_blank">LinkedIn</a></div>
             </div>
@@ -203,6 +208,7 @@
 
 <div class="logos-bar">
     <div class="logos-inner">
+        <span class="logo-item">Inversis</span>
         <span class="logo-item">ING</span>
         <span class="logo-item">Citibank</span>
         <span class="logo-item">Telefónica</span>
@@ -233,7 +239,7 @@
 <section class="section section-warm lang-fade" id="casos">
     <div class="container fade-in">
         <div class="section-label" data-i18n="casos.label">Casos</div>
-        <h2 data-i18n="casos.h2">Cuatro problemas reales.<br><em>Cuatro resultados medibles.</em></h2>
+        <h2 data-i18n="casos.h2">Cuatro problemas reales.<br><em>Resultados que se sostienen.</em></h2>
         <div class="casos-grid">
 
             <div class="caso-card">
@@ -242,18 +248,18 @@
                 <p class="caso-empresa" data-i18n="caso1.empresa">WiZink Bank · Madrid · 2015–2019</p>
                 <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso1.prob">El banco no tenía estructura de back office de tesorería. Operaciones dependientes de terceros, sin procesos ni equipo dedicado.</p></div>
                 <div class="caso-block"><div class="caso-block-label" data-i18n="caso.accion">Acción</div><p class="caso-block-text" data-i18n="caso1.accion">Diseñé el modelo operativo completo: procesos, sistemas de pagos, conexión con SWIFT y Banco de España. Seleccioné y formé al equipo. Migración a Iberclear.</p></div>
-                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso1.impacto">De cero a departamento autónomo de 6 personas en 18 meses. ~€100K ahorro anual. El área sigue operando con el modelo que diseñé.</p></div>
-                <div class="caso-badges"><span class="badge">0 → 6 <span data-i18n="caso1.badge1">personas</span></span><span class="badge">~€100K/<span data-i18n="badge.year">año</span></span><span class="badge">SWIFT · BdE</span></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso1.impacto">Creación de un departamento autónomo, con procesos definidos, equipo formado y mayor independencia operativa.</p></div>
+                <div class="caso-badges"><span class="badge" data-i18n="badge.01.0">Equipo autónomo</span><span class="badge" data-i18n="badge.01.1">Independencia operativa</span><span class="badge" data-i18n="badge.01.2">SWIFT · BdE</span></div>
             </div>
 
             <div class="caso-card">
                 <div class="caso-num">02</div>
                 <h3 class="caso-nombre" data-i18n="caso2.nombre">Foro de Expertos en Pagos</h3>
                 <p class="caso-empresa" data-i18n="caso2.empresa">ING Bank España &amp; Portugal · 2024</p>
-                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso2.prob">Cinco áreas de negocio con impacto en pagos operaban con conocimiento fragmentado. Sin espacio común para alinear criterios ni resolver dudas técnicas.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso2.prob">Áreas de negocio con impacto en pagos operaban con conocimiento fragmentado. Sin espacio común para alinear criterios ni resolver dudas técnicas.</p></div>
                 <div class="caso-block"><div class="caso-block-label" data-i18n="caso.accion">Acción</div><p class="caso-block-text" data-i18n="caso2.accion">Identifiqué el problema, diseñé gobernanza, roadmap de sesiones y arquitectura de contenidos. Sin presupuesto asignado ni mandato jerárquico — puro liderazgo lateral.</p></div>
-                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso2.impacto">87 profesionales de 5 áreas, 8 sesiones, 95% satisfacción. Adoptado como modelo de referencia interna de knowledge management.</p></div>
-                <div class="caso-badges"><span class="badge">87 <span data-i18n="caso2.badge1">profesionales</span></span><span class="badge">5 <span data-i18n="caso2.badge2">áreas</span></span><span class="badge">95% <span data-i18n="caso2.badge3">satisfacción</span></span></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso2.impacto">Comunidad transversal para compartir conocimiento de pagos, alinear criterios y facilitar la colaboración entre áreas.</p></div>
+                <div class="caso-badges"><span class="badge" data-i18n="badge.02.0">Comunidad de práctica</span><span class="badge" data-i18n="badge.02.1">Colaboración transversal</span><span class="badge" data-i18n="badge.02.2">Aprendizaje compartido</span></div>
             </div>
 
             <div class="caso-card">
@@ -261,19 +267,19 @@
                 <h3 class="caso-nombre" data-i18n="caso3.nombre">Migración ISO20022 (CBPR+ / TARGET2)</h3>
                 <p class="caso-empresa" data-i18n="caso3.empresa">Minsait + BME Group · 2021–2024</p>
                 <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso3.prob">Cliente de banca institucional con deadline regulatorio del BCE para migrar a ISO20022. Múltiples equipos sin gobernanza unificada.</p></div>
-                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.accion">Acción</div><p class="caso-block-text" data-i18n="caso3.accion">Definí scope, roadmap de 12 meses y gobernanza de 3 workstreams paralelos. Coordinación multidisciplinar. Value Stream Mapping para identificar cuellos de botella.</p></div>
-                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso3.impacto">20% de reducción en tiempo de ciclo. Entrega dentro del deadline regulatorio. Modelo de gobernanza reutilizado en proyectos posteriores.</p></div>
-                <div class="caso-badges"><span class="badge">20% <span data-i18n="caso3.badge1">reducción ciclo</span></span><span class="badge">ISO20022</span><span class="badge" data-i18n="caso3.badge2">Deadline BCE</span></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.accion">Acción</div><p class="caso-block-text" data-i18n="caso3.accion">Definí alcance, hoja de ruta y gobernanza de líneas de trabajo paralelas. Coordinación multidisciplinar y Value Stream Mapping para identificar cuellos de botella.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso3.impacto">Mejora de los flujos de trabajo y coordinación de la entrega conforme al calendario regulatorio.</p></div>
+                <div class="caso-badges"><span class="badge" data-i18n="badge.03.0">Mejora de procesos</span><span class="badge" data-i18n="badge.03.1">ISO 20022</span><span class="badge" data-i18n="badge.03.2">Calendario regulatorio</span></div>
             </div>
 
             <div class="caso-card">
                 <div class="caso-num">04</div>
                 <h3 class="caso-nombre" data-i18n="caso4.nombre">Control bancario corporativo: Banco Interno del Grupo</h3>
                 <p class="caso-empresa" data-i18n="caso4.empresa">Telefónica · Madrid · 2019–2021</p>
-                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso4.prob">+200 cuentas bancarias en 20 entidades sin sistema unificado de control de costes, comisiones y condiciones contractuales. Coordinación España-Holanda.</p></div>
+                <div class="caso-block"><div class="caso-block-label" data-i18n="caso.problema">Problema</div><p class="caso-block-text" data-i18n="caso4.prob">Cuentas bancarias en distintas entidades sin un sistema unificado de control de costes, comisiones y condiciones contractuales. Coordinación España-Holanda.</p></div>
                 <div class="caso-block"><div class="caso-block-label" data-i18n="caso.accion">Acción</div><p class="caso-block-text" data-i18n="caso4.accion">Creé framework de análisis de costes. Implementación de Pyxis (SAP) para control centralizado. Diseño del operating model del banco interno desde cero.</p></div>
                 <div class="caso-block"><div class="caso-block-label" data-i18n="caso.impacto">Impacto</div><p class="caso-block-text" data-i18n="caso4.impacto">Visibilidad completa sobre costes y condiciones bancarias por primera vez en la organización. Marco de control adoptado como estándar.</p></div>
-                <div class="caso-badges"><span class="badge">+200 <span data-i18n="caso4.badge1">cuentas</span></span><span class="badge">20 <span data-i18n="caso4.badge2">entidades</span></span><span class="badge">Pyxis / SAP</span></div>
+                <div class="caso-badges"><span class="badge" data-i18n="badge.04.0">Control bancario</span><span class="badge" data-i18n="badge.04.1">Tesorería corporativa</span><span class="badge" data-i18n="badge.04.2">Pyxis / SAP</span></div>
             </div>
 
         </div>
@@ -300,8 +306,13 @@
         <h2 data-i18n="tray.h2">Diecinueve años.<br><em>Siempre construyendo.</em></h2>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-period">2024 — <span data-i18n="tray.today">Hoy</span></div>
-                <div class="timeline-content"><h3 data-i18n="tray1.role">Process Manager &amp; Transformation Lead | Product Owner (Bizum &amp; SEPA Instant)</h3><div class="timeline-org">ING Bank España &amp; Portugal</div><p class="timeline-desc" data-i18n="tray1.desc">Supervisión de productos críticos de pago. Agile delivery lead del equipo PaySystems. Representante en grupos de Euro Digital e Innovación (Iberpay, BCE/BdE). Fundador del Foro de Expertos en Pagos. Programa de offshoring a Manila: €120K/año ahorro.</p></div>
+                <div class="timeline-period">2026 — <span data-i18n="tray.today">Hoy</span></div>
+                <div class="timeline-content"><h3 data-i18n="tray0.role">Pagos, transformación y mejora de procesos</h3><div class="timeline-org">Inversis</div><p class="timeline-desc" data-i18n="tray0.desc">En Inversis desde 2026. Análisis y definición de requisitos para flujos de pagos institucionales ISO 20022 y mejora de procesos. BAU Index: iniciativa en desarrollo para clasificar la actividad y orientar la mejora continua, la autonomía y la gestión de capacidad.</p></div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-period">2024 — 2026</div>
+                <div class="timeline-content"><h3 data-i18n="tray1.role">Experto en Pagos | Process Owner (Bizum e iSCT) y Flow Master</h3><div class="timeline-org">ING Bank España &amp; Portugal</div><p class="timeline-desc" data-i18n="tray1.desc">Supervisión de servicios de pagos inmediatos y mejora continua. Flow Master del equipo PaySystems. Participación en grupos de Euro Digital e Innovación durante la etapa en ING. Fundador del Foro de Expertos en Pagos y participación en el programa de offshoring a Manila.</p></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">2022 — 2024</div>
@@ -313,19 +324,19 @@
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">2019 — 2021</div>
-                <div class="timeline-content"><h3 data-i18n="tray4.role">Product Owner — Treasury &amp; Cash Management</h3><div class="timeline-org">Telefónica</div><p class="timeline-desc" data-i18n="tray4.desc">Gestión de +200 cuentas bancarias en 20 entidades. Participación clave en la creación del banco interno del grupo.</p></div>
+                <div class="timeline-content"><h3 data-i18n="tray4.role">Product Owner — Treasury &amp; Cash Management</h3><div class="timeline-org">Telefónica</div><p class="timeline-desc" data-i18n="tray4.desc">Control de cuentas y condiciones bancarias en un entorno internacional. Participación clave en la creación del banco interno del grupo.</p></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">2015 — 2019</div>
-                <div class="timeline-content"><h3 data-i18n="tray5.role">Head of Treasury Operations — Creación desde cero</h3><div class="timeline-org">WiZink Bank</div><p class="timeline-desc" data-i18n="tray5.desc">Creación del departamento completo de operaciones de tesorería. De 0 a 6 personas en 18 meses.</p></div>
+                <div class="timeline-content"><h3 data-i18n="tray5.role">Head of Treasury Operations — Creación desde cero</h3><div class="timeline-org">WiZink Bank</div><p class="timeline-desc" data-i18n="tray5.desc">Creación del departamento de operaciones de tesorería: modelo operativo, procesos, sistemas y desarrollo del equipo.</p></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-period">2006 — 2015</div>
                 <div class="timeline-content"><h3 data-i18n="tray6.role">Payment Operations Specialist</h3><div class="timeline-org">Citibank · Barcelona</div><p class="timeline-desc" data-i18n="tray6.desc">Nueve años en transaction banking global: SWIFT, banca corresponsal, nostro/vostro, detección de fraude.</p></div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-period">1999 — 2006</div>
-                <div class="timeline-content"><h3 data-i18n="tray7.role">Oficial de Operaciones Logísticas</h3><div class="timeline-org" data-i18n="tray7.org">Armada de Brasil</div><p class="timeline-desc" data-i18n="tray7.desc">Gestión logística en operaciones internacionales. La base de mi forma de operar: datos, personas, resultado.</p></div>
+                <div class="timeline-period" data-i18n="tray.earlier">Experiencia previa</div>
+                <div class="timeline-content"><h3 data-i18n="tray7.role">Operaciones logísticas</h3><div class="timeline-org" data-i18n="tray7.org">Armada de Brasil</div><p class="timeline-desc" data-i18n="tray7.desc">Gestión logística en operaciones internacionales. La base de mi forma de operar: datos, personas, resultado.</p></div>
             </div>
         </div>
         <div class="education-line">
@@ -342,13 +353,10 @@
         <h2 data-i18n="lab.h2">Cómo construyo <em>soluciones.</em></h2>
         <div class="body-text"><p data-i18n="lab.intro">No solo proceso la innovación — la prototipo. Herramientas funcionales construidas con IA generativa que nacen de necesidades reales: evaluación de talento, coaching de carrera y divulgación.</p></div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem">
+        <div class="lab-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem">
 
             <!-- FlowForge PRO -->
-            <a href="https://rozoca.github.io/Proyectos/flowforge-pro/" target="_blank" rel="noopener"
-               style="text-decoration:none;background:#0b0c10;border:1px solid #1e2035;border-radius:4px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s;grid-column:span 2"
-               onmouseover="this.style.borderColor='#d4a04a';this.style.boxShadow='0 6px 28px rgba(212,160,74,.12)'"
-               onmouseout="this.style.borderColor='#1e2035';this.style.boxShadow='none'">
+            <a href="https://rozoca.github.io/Proyectos/flowforge-pro/" target="_blank" rel="noopener" style="text-decoration:none;background:#0b0c10;border:1px solid #1e2035;border-radius:4px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s;grid-column:span 2" onmouseover="this.style.borderColor='#d4a04a';this.style.boxShadow='0 6px 28px rgba(212,160,74,.12)'" onmouseout="this.style.borderColor='#1e2035';this.style.boxShadow='none'">
               <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap">
                 <div style="flex:1;min-width:260px">
                   <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#d4a04a;display:block;margin-bottom:.7rem" data-i18n="ff.tag">Diseño &amp; Minería de Procesos</span>
@@ -412,7 +420,7 @@
         <h2 data-i18n="vision.h2">El sector de pagos<br><em>en un punto de inflexión.</em></h2>
         <div class="vision-text">
             <p data-i18n="vision.p1">SEPA Instant, ISO20022, Euro Digital y la presión regulatoria del BCE no son tendencias — son cambios de plataforma. Las organizaciones que lo entiendan como oportunidad estratégica, y no solo como carga de compliance, saldrán mejor posicionadas.</p>
-            <p data-i18n="vision.p2">El Euro Digital no es un proyecto de IT. Es un rediseño del sistema monetario con implicaciones para el modelo de negocio bancario. Participar activamente en los grupos de trabajo de Iberpay y BCE/BdE es una posición de escucha privilegiada sobre adónde va el sistema.</p>
+            <p data-i18n="vision.p2">Mi participación en grupos de trabajo de Iberpay y BCE/BdE durante la etapa en ING reforzó mi visión de los pagos como un ámbito de transformación del negocio, con implicaciones operativas y organizativas.</p>
         </div>
     </div>
 </section>
@@ -421,7 +429,7 @@
     <div class="container fade-in">
         <div class="section-label" data-i18n="contact.label">Contacto</div>
         <h2 data-i18n="contact.h2">Hablemos de lo que<br><em>necesitas resolver.</em></h2>
-        <div class="body-text"><p data-i18n="contact.intro">Abierto a roles senior en transformación, gestión de proyectos estratégicos, diseño de producto, oficinas de transformación o PMO donde pueda aportar impacto real en eficiencia, control y ejecución. Sector financiero, pagos y entornos regulados son mi terreno natural, pero el patrón aplica a cualquier operación compleja.</p></div>
+        <div class="body-text"><p data-i18n="contact.intro">Mi foco profesional: transformación, pagos y mejora continua. Aporto experiencia en gestión de proyectos, diseño de modelos operativos y coordinación entre negocio, operaciones y tecnología en entornos regulados.</p></div>
         <div class="contact-grid">
             <div class="contact-item"><span class="contact-label" data-i18n="contact.email.label">Email</span><span class="contact-value"><a href="mailto:rovid25@outlook.com">rovid25@outlook.com</a></span></div>
             <div class="contact-item"><span class="contact-label">LinkedIn</span><span class="contact-value"><a href="https://linkedin.com/in/rvidal-projectmanager" target="_blank">rvidal-projectmanager</a></span></div>
@@ -432,12 +440,31 @@
     </div>
 </section>
 
-<footer><div class="container"><p>Rodrigo Vidal · Madrid · 2025</p></div></footer>
+<footer><div class="container"><p>Rodrigo Vidal · Madrid · 2026</p></div></footer>
 
 <script>
 // ─── TRANSLATIONS ───────────────────────────────────────────────────────────
 const T = {
   es: {
+    "tray0.role": "Pagos, transformación y mejora de procesos",
+    "tray0.desc": "En Inversis desde 2026. Análisis y definición de requisitos para flujos de pagos institucionales ISO 20022 y mejora de procesos. BAU Index: iniciativa en desarrollo para clasificar la actividad y orientar la mejora continua, la autonomía y la gestión de capacidad.",
+    "meta.location": "Madrid, España",
+    "metric.build": "Crear",
+    "metric.connect": "Conectar",
+    "metric.transform": "Transformar",
+    "badge.01.0": "Equipo autónomo",
+    "badge.01.1": "Independencia operativa",
+    "badge.01.2": "SWIFT · BdE",
+    "badge.02.0": "Comunidad de práctica",
+    "badge.02.1": "Colaboración transversal",
+    "badge.02.2": "Aprendizaje compartido",
+    "badge.03.0": "Mejora de procesos",
+    "badge.03.1": "ISO 20022",
+    "badge.03.2": "Calendario regulatorio",
+    "badge.04.0": "Control bancario",
+    "badge.04.1": "Tesorería corporativa",
+    "badge.04.2": "Pyxis / SAP",
+    "tray.earlier": "Experiencia previa",
     "nav.problem": "El problema",
     "nav.cases": "Casos",
     "nav.method": "Método",
@@ -446,10 +473,10 @@ const T = {
     "nav.contact": "Contacto",
     "hero.label": "Transformación & Liderazgo",
     "hero.title": "Me contratan cuando hay que construir lo que no existe, ordenar lo que no funciona o transformar <em>lo que se ha quedado atrás.</em>",
-    "hero.sub": "+19 años en banca y sector financiero resolviendo problemas complejos que otros no saben diagnosticar. Construyo operaciones desde cero, ejecuto migraciones críticas y dejo equipos funcionando sin depender de mí.",
-    "hero.metric1": "equipo creado desde cero",
-    "hero.metric2": "profesionales coordinados",
-    "hero.metric3": "reducción de ciclo ISO20022",
+    "hero.sub": "+19 años en banca y sector financiero conectando pagos, transformación y mejora de procesos. Construyo modelos operativos, coordino migraciones críticas y desarrollo equipos capaces de sostener el cambio. Actualmente en Inversis.",
+    "hero.metric1": "operaciones desde cero",
+    "hero.metric2": "conocimiento compartido",
+    "hero.metric3": "pagos y transformación",
     "hero.cta1": "Ver cómo lo hago",
     "hero.cta2": "Descargar CV (PDF)",
     "logos.navy": "Armada de Brasil",
@@ -460,7 +487,7 @@ const T = {
     "brecha.col2.h3": "Lo que hago",
     "brecha.col2.p": "Cierro esa brecha: traduzco complejidad técnica y operativa en decisiones que se pueden ejecutar. No diseño soluciones teóricas. Las implemento, construyo los equipos que las sostienen y dejo capacidad instalada.",
     "casos.label": "Casos",
-    "casos.h2": "Cuatro problemas reales.<br><em>Cuatro resultados medibles.</em>",
+    "casos.h2": "Cuatro problemas reales.<br><em>Resultados que se sostienen.</em>",
     "caso.problema": "Problema",
     "caso.accion": "Acción",
     "caso.impacto": "Impacto",
@@ -468,31 +495,31 @@ const T = {
     "caso1.empresa": "WiZink Bank · Madrid · 2015–2019",
     "caso1.prob": "El banco no tenía estructura de back office de tesorería. Operaciones dependientes de terceros, sin procesos ni equipo dedicado.",
     "caso1.accion": "Diseñé el modelo operativo completo: procesos, sistemas de pagos, conexión con SWIFT y Banco de España. Seleccioné y formé al equipo. Migración a Iberclear.",
-    "caso1.impacto": "De cero a departamento autónomo de 6 personas en 18 meses. ~€100K ahorro anual. El área sigue operando con el modelo que diseñé.",
-    "caso1.badge1": "personas",
+    "caso1.impacto": "Creación de un departamento autónomo, con procesos definidos, equipo formado y mayor independencia operativa.",
+    "caso1.badge1": "equipo autónomo",
     "badge.year": "año",
     "caso2.nombre": "Foro de Expertos en Pagos",
     "caso2.empresa": "ING Bank España & Portugal · 2024",
-    "caso2.prob": "Cinco áreas de negocio con impacto en pagos operaban con conocimiento fragmentado. Sin espacio común para alinear criterios ni resolver dudas técnicas.",
+    "caso2.prob": "Áreas de negocio con impacto en pagos operaban con conocimiento fragmentado. Sin espacio común para alinear criterios ni resolver dudas técnicas.",
     "caso2.accion": "Identifiqué el problema, diseñé gobernanza, roadmap de sesiones y arquitectura de contenidos. Sin presupuesto asignado ni mandato jerárquico — puro liderazgo lateral.",
-    "caso2.impacto": "87 profesionales de 5 áreas, 8 sesiones, 95% satisfacción. Adoptado como modelo de referencia interna de knowledge management.",
-    "caso2.badge1": "profesionales",
-    "caso2.badge2": "áreas",
-    "caso2.badge3": "satisfacción",
+    "caso2.impacto": "Comunidad transversal para compartir conocimiento de pagos, alinear criterios y facilitar la colaboración entre áreas.",
+    "caso2.badge1": "comunidad de práctica",
+    "caso2.badge2": "colaboración transversal",
+    "caso2.badge3": "aprendizaje compartido",
     "caso3.nombre": "Migración ISO20022 (CBPR+ / TARGET2)",
     "caso3.empresa": "Minsait + BME Group · 2021–2024",
     "caso3.prob": "Cliente de banca institucional con deadline regulatorio del BCE para migrar a ISO20022. Múltiples equipos sin gobernanza unificada.",
-    "caso3.accion": "Definí scope, roadmap de 12 meses y gobernanza de 3 workstreams paralelos. Coordinación multidisciplinar. Value Stream Mapping para identificar cuellos de botella.",
-    "caso3.impacto": "20% de reducción en tiempo de ciclo. Entrega dentro del deadline regulatorio. Modelo de gobernanza reutilizado en proyectos posteriores.",
-    "caso3.badge1": "reducción ciclo",
+    "caso3.accion": "Definí alcance, hoja de ruta y gobernanza de líneas de trabajo paralelas. Coordinación multidisciplinar y Value Stream Mapping para identificar cuellos de botella.",
+    "caso3.impacto": "Mejora de los flujos de trabajo y coordinación de la entrega conforme al calendario regulatorio.",
+    "caso3.badge1": "mejora de procesos",
     "caso3.badge2": "Deadline BCE",
     "caso4.nombre": "Control bancario corporativo: Banco Interno del Grupo",
     "caso4.empresa": "Telefónica · Madrid · 2019–2021",
-    "caso4.prob": "+200 cuentas bancarias en 20 entidades sin sistema unificado de control de costes, comisiones y condiciones contractuales. Coordinación España-Holanda.",
+    "caso4.prob": "Cuentas bancarias en distintas entidades sin un sistema unificado de control de costes, comisiones y condiciones contractuales. Coordinación España-Holanda.",
     "caso4.accion": "Creé framework de análisis de costes. Implementación de Pyxis (SAP) para control centralizado. Diseño del operating model del banco interno desde cero.",
     "caso4.impacto": "Visibilidad completa sobre costes y condiciones bancarias por primera vez en la organización. Marco de control adoptado como estándar.",
-    "caso4.badge1": "cuentas",
-    "caso4.badge2": "entidades",
+    "caso4.badge1": "control bancario",
+    "caso4.badge2": "tesorería corporativa",
     "metodo.label": "Método",
     "metodo.h2": "Un patrón <em>consistente.</em>",
     "metodo.intro": "No existe fórmula universal para transformar operaciones. Pero después de hacerlo en seis organizaciones diferentes, el proceso sigue la misma lógica:",
@@ -507,19 +534,19 @@ const T = {
     "tray.label": "Trayectoria",
     "tray.h2": "Diecinueve años.<br><em>Siempre construyendo.</em>",
     "tray.today": "Hoy",
-    "tray1.role": "Process Manager & Transformation Lead | Product Owner (Bizum & SEPA Instant)",
-    "tray1.desc": "Supervisión de productos críticos de pago. Agile delivery lead del equipo PaySystems. Representante en grupos de Euro Digital e Innovación (Iberpay, BCE/BdE). Fundador del Foro de Expertos en Pagos. Programa de offshoring a Manila: €120K/año ahorro.",
+    "tray1.role": "Experto en Pagos | Process Owner (Bizum e iSCT) y Flow Master",
+    "tray1.desc": "Supervisión de servicios de pagos inmediatos y mejora continua. Flow Master del equipo PaySystems. Participación en grupos de Euro Digital e Innovación durante la etapa en ING. Fundador del Foro de Expertos en Pagos y participación en el programa de offshoring a Manila.",
     "tray2.role": "Process Improvement Lead & Treasury Specialist",
     "tray2.desc": "Coordinación de migración ISO20022 para banca institucional. Value Stream Mapping y mejora de procesos post-trade.",
     "tray3.role": "Senior Consultant & Transformation Project Manager",
     "tray3.desc": "Gestión integral de migración ISO20022. Coordinación multidisciplinar y change management.",
     "tray4.role": "Product Owner — Treasury & Cash Management",
-    "tray4.desc": "Gestión de +200 cuentas bancarias en 20 entidades. Participación clave en la creación del banco interno del grupo.",
+    "tray4.desc": "Control de cuentas y condiciones bancarias en un entorno internacional. Participación clave en la creación del banco interno del grupo.",
     "tray5.role": "Head of Treasury Operations — Creación desde cero",
-    "tray5.desc": "Creación del departamento completo de operaciones de tesorería. De 0 a 6 personas en 18 meses.",
+    "tray5.desc": "Creación del departamento de operaciones de tesorería: modelo operativo, procesos, sistemas y desarrollo del equipo.",
     "tray6.role": "Payment Operations Specialist",
     "tray6.desc": "Nueve años en transaction banking global: SWIFT, banca corresponsal, nostro/vostro, detección de fraude.",
-    "tray7.role": "Oficial de Operaciones Logísticas",
+    "tray7.role": "Operaciones logísticas",
     "tray7.org": "Armada de Brasil",
     "tray7.desc": "Gestión logística en operaciones internacionales. La base de mi forma de operar: datos, personas, resultado.",
     "edu.label": "Formación",
@@ -552,10 +579,10 @@ const T = {
     "vision.label": "Visión",
     "vision.h2": "El sector de pagos<br><em>en un punto de inflexión.</em>",
     "vision.p1": "SEPA Instant, ISO20022, Euro Digital y la presión regulatoria del BCE no son tendencias — son cambios de plataforma. Las organizaciones que lo entiendan como oportunidad estratégica, y no solo como carga de compliance, saldrán mejor posicionadas.",
-    "vision.p2": "El Euro Digital no es un proyecto de IT. Es un rediseño del sistema monetario con implicaciones para el modelo de negocio bancario. Participar activamente en los grupos de trabajo de Iberpay y BCE/BdE es una posición de escucha privilegiada sobre adónde va el sistema.",
+    "vision.p2": "Mi participación en grupos de trabajo de Iberpay y BCE/BdE durante la etapa en ING reforzó mi visión de los pagos como un ámbito de transformación del negocio, con implicaciones operativas y organizativas.",
     "contact.label": "Contacto",
     "contact.h2": "Hablemos de lo que<br><em>necesitas resolver.</em>",
-    "contact.intro": "Abierto a roles senior en transformación, gestión de proyectos estratégicos, diseño de producto, oficinas de transformación o PMO donde pueda aportar impacto real en eficiencia, control y ejecución. Sector financiero, pagos y entornos regulados son mi terreno natural, pero el patrón aplica a cualquier operación compleja.",
+    "contact.intro": "Mi foco profesional: transformación, pagos y mejora continua. Aporto experiencia en gestión de proyectos, diseño de modelos operativos y coordinación entre negocio, operaciones y tecnología en entornos regulados.",
     "contact.email.label": "Email",
     "contact.location.label": "Ubicación",
     "contact.location.val": "Madrid, España",
@@ -564,6 +591,25 @@ const T = {
     "contact.cta": "Enviar email",
   },
   en: {
+    "tray0.role": "Payments, transformation and process improvement",
+    "tray0.desc": "At Inversis since 2026. Analysis and requirements definition for institutional ISO 20022 payment flows and process improvement. BAU Index: an initiative under development to classify work and support continuous improvement, autonomy and capacity management.",
+    "meta.location": "Madrid, Spain",
+    "metric.build": "Build",
+    "metric.connect": "Connect",
+    "metric.transform": "Transform",
+    "badge.01.0": "Autonomous team",
+    "badge.01.1": "Operational independence",
+    "badge.01.2": "SWIFT · BdE",
+    "badge.02.0": "Community of practice",
+    "badge.02.1": "Cross-functional collaboration",
+    "badge.02.2": "Shared learning",
+    "badge.03.0": "Process improvement",
+    "badge.03.1": "ISO 20022",
+    "badge.03.2": "Regulatory timetable",
+    "badge.04.0": "Banking control",
+    "badge.04.1": "Corporate treasury",
+    "badge.04.2": "Pyxis / SAP",
+    "tray.earlier": "Earlier experience",
     "nav.problem": "The problem",
     "nav.cases": "Cases",
     "nav.method": "Method",
@@ -572,10 +618,10 @@ const T = {
     "nav.contact": "Contact",
     "hero.label": "Transformation & Leadership",
     "hero.title": "I'm brought in when something needs to be built from scratch, fixed when it's broken, or transformed <em>when it's been left behind.</em>",
-    "hero.sub": "+19 years in banking and financial services solving complex problems others can't diagnose. I build operations from zero, execute critical migrations, and leave teams that run without depending on me.",
-    "hero.metric1": "team built from scratch",
-    "hero.metric2": "professionals coordinated",
-    "hero.metric3": "ISO20022 cycle time reduction",
+    "hero.sub": "19+ years in banking and financial services, connecting payments, transformation and process improvement. I build operating models, coordinate critical migrations and develop teams that sustain change. Currently at Inversis.",
+    "hero.metric1": "operations built from scratch",
+    "hero.metric2": "shared expertise",
+    "hero.metric3": "payments and transformation",
     "hero.cta1": "See how I do it",
     "hero.cta2": "Download CV (PDF)",
     "logos.navy": "Brazilian Navy",
@@ -586,7 +632,7 @@ const T = {
     "brecha.col2.h3": "What I do",
     "brecha.col2.p": "I close that gap: I translate technical and operational complexity into decisions that can be executed. I don't design theoretical solutions. I implement them, build the teams that sustain them, and leave installed capacity behind.",
     "casos.label": "Cases",
-    "casos.h2": "Four real problems.<br><em>Four measurable results.</em>",
+    "casos.h2": "Four real problems.<br><em>Lasting results.</em>",
     "caso.problema": "Problem",
     "caso.accion": "Action",
     "caso.impacto": "Impact",
@@ -594,31 +640,31 @@ const T = {
     "caso1.empresa": "WiZink Bank · Madrid · 2015–2019",
     "caso1.prob": "The bank had no treasury back office structure. Operations outsourced to third parties, no dedicated processes or team.",
     "caso1.accion": "Designed the full operating model: processes, payment systems, SWIFT and Banco de España connectivity. Recruited and trained the team. Migration to Iberclear.",
-    "caso1.impacto": "Zero to autonomous 6-person department in 18 months. ~€100K annual savings. The department still runs on the model I designed.",
-    "caso1.badge1": "people",
+    "caso1.impacto": "Built an autonomous department with defined processes, a trained team and greater operational independence.",
+    "caso1.badge1": "autonomous team",
     "badge.year": "yr",
     "caso2.nombre": "Payments Expert Forum",
     "caso2.empresa": "ING Bank Spain & Portugal · 2024",
-    "caso2.prob": "Five business areas with payments impact operated with fragmented knowledge. No shared space to align criteria or resolve technical questions.",
+    "caso2.prob": "Business areas involved in payments operated with fragmented knowledge. No shared forum to align criteria or resolve technical questions.",
     "caso2.accion": "Identified the problem, designed governance, session roadmap and content architecture. No assigned budget or hierarchical mandate — pure lateral leadership.",
-    "caso2.impacto": "87 professionals across 5 areas, 8 sessions, 95% satisfaction. Adopted as the internal reference model for knowledge management.",
-    "caso2.badge1": "professionals",
-    "caso2.badge2": "areas",
-    "caso2.badge3": "satisfaction",
+    "caso2.impacto": "A cross-functional community to share payments expertise, align practices and support collaboration across teams.",
+    "caso2.badge1": "community of practice",
+    "caso2.badge2": "cross-functional collaboration",
+    "caso2.badge3": "shared learning",
     "caso3.nombre": "ISO20022 Migration (CBPR+ / TARGET2)",
     "caso3.empresa": "Minsait + BME Group · 2021–2024",
     "caso3.prob": "Institutional banking client with ECB regulatory deadline to migrate to ISO20022. Multiple teams without unified governance.",
-    "caso3.accion": "Defined scope, 12-month roadmap and governance for 3 parallel workstreams. Multidisciplinary coordination. Value Stream Mapping to identify bottlenecks.",
-    "caso3.impacto": "20% reduction in cycle time. Delivered within the regulatory deadline. Governance model reused in subsequent projects.",
-    "caso3.badge1": "cycle reduction",
+    "caso3.accion": "Defined scope, roadmap and governance for parallel workstreams. Multidisciplinary coordination and Value Stream Mapping to identify bottlenecks.",
+    "caso3.impacto": "Improved workflows and coordinated delivery against the regulatory timetable.",
+    "caso3.badge1": "process improvement",
     "caso3.badge2": "ECB Deadline",
     "caso4.nombre": "Corporate Banking Control: Group Internal Bank",
     "caso4.empresa": "Telefónica · Madrid · 2019–2021",
-    "caso4.prob": "+200 bank accounts across 20 entities with no unified system for cost control, fees or contractual conditions. Spain-Netherlands coordination.",
+    "caso4.prob": "Bank accounts across multiple institutions without a unified system for costs, fees and contractual terms. Spain-Netherlands coordination.",
     "caso4.accion": "Created a cost analysis framework. Implemented Pyxis (SAP) for centralised control. Designed the internal bank operating model from scratch.",
     "caso4.impacto": "Full visibility over banking costs and conditions for the first time in the organisation. Control framework adopted as the standard.",
-    "caso4.badge1": "accounts",
-    "caso4.badge2": "entities",
+    "caso4.badge1": "banking control",
+    "caso4.badge2": "corporate treasury",
     "metodo.label": "Method",
     "metodo.h2": "A <em>consistent</em> pattern.",
     "metodo.intro": "There is no universal formula for transforming operations. But after doing it in six different organisations, the process follows the same logic:",
@@ -633,19 +679,19 @@ const T = {
     "tray.label": "Career",
     "tray.h2": "Nineteen years.<br><em>Always building.</em>",
     "tray.today": "Today",
-    "tray1.role": "Process Manager & Transformation Lead | Product Owner (Bizum & SEPA Instant)",
-    "tray1.desc": "Oversight of critical payment products. Agile delivery lead for the PaySystems team. Representative in Euro Digital and Innovation working groups (Iberpay, ECB/BdE). Founder of the Payments Expert Forum. Manila offshoring programme: €120K/yr savings.",
+    "tray1.role": "Payments Expert | Process Owner (Bizum and iSCT) and Flow Master",
+    "tray1.desc": "Oversight of instant payment services and continuous improvement. Flow Master for the PaySystems team. Participation in Digital Euro and innovation working groups during my time at ING. Founder of the Payments Expert Forum and involvement in the Manila offshoring programme.",
     "tray2.role": "Process Improvement Lead & Treasury Specialist",
     "tray2.desc": "Coordination of ISO20022 migration for institutional banking. Value Stream Mapping and post-trade process improvement.",
     "tray3.role": "Senior Consultant & Transformation Project Manager",
     "tray3.desc": "Full management of ISO20022 migration. Multidisciplinary coordination and change management.",
     "tray4.role": "Product Owner — Treasury & Cash Management",
-    "tray4.desc": "Management of +200 bank accounts across 20 entities. Key role in creating the group's internal bank.",
+    "tray4.desc": "Control of bank accounts and banking terms in an international environment. Key role in establishing the group internal bank.",
     "tray5.role": "Head of Treasury Operations — Built from scratch",
-    "tray5.desc": "Created the complete treasury operations department. Zero to 6 people in 18 months.",
+    "tray5.desc": "Established the treasury operations department: operating model, processes, systems and team development.",
     "tray6.role": "Payment Operations Specialist",
     "tray6.desc": "Nine years in global transaction banking: SWIFT, correspondent banking, nostro/vostro, fraud detection.",
-    "tray7.role": "Logistics Operations Officer",
+    "tray7.role": "Logistics operations",
     "tray7.org": "Brazilian Navy",
     "tray7.desc": "Logistics management in international operations. The foundation of how I operate: data, people, results.",
     "edu.label": "Education",
@@ -678,10 +724,10 @@ const T = {
     "vision.label": "Vision",
     "vision.h2": "The payments sector<br><em>at an inflection point.</em>",
     "vision.p1": "SEPA Instant, ISO20022, Digital Euro and ECB regulatory pressure are not trends — they are platform shifts. Organisations that understand this as a strategic opportunity, not just a compliance burden, will emerge stronger.",
-    "vision.p2": "The Digital Euro is not an IT project. It is a redesign of the monetary system with implications for the banking business model. Active participation in Iberpay and ECB/BdE working groups is a privileged listening post on where the system is heading.",
+    "vision.p2": "My participation in Iberpay and ECB/BdE working groups during my time at ING strengthened my view of payments as a business transformation domain with operational and organisational implications.",
     "contact.label": "Contact",
     "contact.h2": "Let's talk about what<br><em>you need to solve.</em>",
-    "contact.intro": "Open to senior roles in transformation, strategic project management, product design, transformation offices or PMO where I can deliver real impact on efficiency, control and execution. Financial services, payments and regulated environments are my natural ground — but the pattern applies to any complex operation.",
+    "contact.intro": "My professional focus: transformation, payments and continuous improvement. I bring experience in project management, operating model design and coordination across business, operations and technology in regulated environments.",
     "contact.email.label": "Email",
     "contact.location.label": "Location",
     "contact.location.val": "Madrid, Spain",
@@ -692,7 +738,8 @@ const T = {
 };
 
 // ─── ENGINE ──────────────────────────────────────────────────────────────────
-let currentLang = localStorage.getItem('rv_lang') || (navigator.language.startsWith('en') ? 'en' : 'es');
+let currentLang = localStorage.getItem('rv_lang');
+if (currentLang !== 'es' && currentLang !== 'en') currentLang = navigator.language.startsWith('en') ? 'en' : 'es';
 
 function applyLang(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -702,6 +749,13 @@ function applyLang(lang) {
     }
   });
   document.documentElement.lang = lang;
+  document.querySelectorAll('[download]').forEach(el => {
+    const file = lang === 'en' ? 'Rodrigo_Vidal_CV_EN.pdf' : 'Rodrigo_Vidal_CV_ES.pdf';
+    el.href = file;
+    el.download = file;
+  });
+  document.querySelector('meta[name="description"]').content = lang === 'en' ? 'Payments, process transformation and change management. 19+ years in banking and financial services. Currently at Inversis.' : 'Pagos, transformación de procesos y gestión del cambio. +19 años en banca y sector financiero. Actualmente en Inversis.';
+  document.querySelector('meta[property="og:title"]').content = lang === 'en' ? 'Rodrigo Vidal — Transformation & Leadership' : 'Rodrigo Vidal — Transformación & Liderazgo';
   document.title = lang === 'en'
     ? 'Rodrigo Vidal — Transformation & Leadership'
     : 'Rodrigo Vidal — Transformación & Liderazgo';
